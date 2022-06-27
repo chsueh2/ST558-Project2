@@ -1,6 +1,4 @@
 # ST558-Project2
-NCSU ST558 Project 2
-
 Due Sunday, July 10, 2022, 11:59 PM
 
 Group 2-5<br>
