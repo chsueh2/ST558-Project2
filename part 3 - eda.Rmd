@@ -1,0 +1,33 @@
+---
+title: "ST558 Porject 1: Part 3"
+author: "Bridget Knapp and Chien-Lan Hsueh"
+institute: Online Statistics Master Program, NCSU
+date: "`r Sys.Date()`"
+output:
+  html_notebook:
+    theme: cerulean
+    highlight: haddock
+    code_folding: none
+  html_document:
+    df_print: paged
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(fig.path = "./images/")
+```
+
+
+## Summarizations
+
+> You should produce some basic (but meaningful) summary statistics and plots about the training data you
+are working with (especially as it relates to your response).
+>
+> As you will automate this same analysis across other data, you can’t describe the trends you see in the graph (unless you want to try to automate that!). You should describe what to look for in the summary statistics/plots to help the reader understand the summary or graph. Ex: A scatter plot with the number of shares on the y-axis and the positive word rate on the x-axis is created:
+>
+> 'We can inspect the trend of shares as a function of the positive word rate. If the points show an upward trend, then articles with more positive words tend to be shared more often. If we see a negative trend then articles with more positive words tend to be shared less often.'
+>
+> Each group member is responsible for producing some summary statistics (means, sds, contingency tables, etc.) and for producing at least three graphs (each) of the data.
+
+
+
+## Start here...
