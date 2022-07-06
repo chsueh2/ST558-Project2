@@ -26,6 +26,16 @@ knitr::opts_chunk$set(fig.path = "./images/")
 
 ## Start here...
 
+```{r 8:40_7_5_2022,echo=FALSE}
+rmarkdown::render("part 2 - data.Rmd",
+                  output_format = "github_document",
+                  output_options = list(
+                    toc = TRUE,
+                    html_preview=FALSE) 
+)
+
+```
+
 ```{r 8:36 7_5_2022,message=FALSE,warning=FALSE}
 library(tidyverse)
 library(readr)
