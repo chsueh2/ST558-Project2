@@ -1,5 +1,5 @@
 ---
-title: "ST558 Porject 1: Part 2"
+title: "ST558 Porject 1: Part 2 Test"
 author: "Bridget Knapp and Chien-Lan Hsueh"
 institute: Online Statistics Master Program, NCSU
 date: "`r Sys.Date()`"
@@ -26,7 +26,7 @@ knitr::opts_chunk$set(fig.path = "./images/")
 
 ## Start here...
 
-```{r 8:40_7_5_2022,echo=FALSE}
+```{r render, echo = FALSE, eval = FALSE}
 rmarkdown::render("part 2 - data.Rmd",
                   output_format = "github_document",
                   output_options = list(
@@ -40,7 +40,7 @@ rmarkdown::render("part 2 - data.Rmd",
 library(tidyverse)
 library(readr)
 
-data<-read_csv("/data/OnlineNewsPopularity.csv")
+data<-read_csv("../ST558-Project2/data/OnlineNewsPopularity.csv")
 head(data)
 ```
 
