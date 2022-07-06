@@ -42,7 +42,51 @@ library(readr)
 
 data<-read_csv("/data/OnlineNewsPopularity.csv")
 head(data)
-
-
 ```
 
+Subset the data to work on the data channel of interest.
+
+```{r 8:49_7_5_2022}
+#Lifestyle, Entertainment, Business, Social Media, Tech, and World
+
+subset_data <- function(channel_of_interest){
+  if(channel_of_interest=="Lifestyle"){
+    new_data = subset(data, select = -c(data_channel_is_entertainment,data_channel_is_bus,data_channel_is_socmed,data_channel_is_tech,data_channel_is_world) )
+  }
+  if(channel_of_interest=="Entertainment"){
+    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_bus,data_channel_is_socmed,data_channel_is_tech,data_channel_is_world) )
+  }
+   if(channel_of_interest=="Business"){
+    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_socmed,data_channel_is_tech,data_channel_is_world) )
+   }
+   if(channel_of_interest=="Social_Media"){
+    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_bus,data_channel_is_tech,data_channel_is_world) )
+   }
+   if(channel_of_interest=="Tech"){
+    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_bus,data_channel_is_socmed,data_channel_is_world) )
+   }
+   if(channel_of_interest=="World"){
+    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_bus,data_channel_is_socmed,data_channel_is_tech) )
+  }
+  return(new_data)
+}
+
+Lifestyle_data <- subset_data(channel_of_interest="Lifestyle")
+head(Lifestyle_data)
+
+Entertainment_data <- subset_data(channel_of_interest="Entertainment")
+head(Entertainment_data)
+
+Business_data <- subset_data(channel_of_interest="Business")
+head(Business_data)
+
+Social_Media_data <- subset_data(channel_of_interest="Social_Media")
+head(Social_Media_data)
+
+Tech_data <- subset_data(channel_of_interest="Tech")
+head(Tech_data)
+
+World_data <- subset_data(channel_of_interest="World")
+head(World_data)
+
+```
