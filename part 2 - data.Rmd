@@ -25,3 +25,14 @@ knitr::opts_chunk$set(fig.path = "./images/")
 
 
 ## Start here...
+
+```{r 8:36 7_5_2022,message=FALSE,warning=FALSE}
+library(tidyverse)
+library(readr)
+
+data<-read_csv("/data/OnlineNewsPopularity.csv")
+head(data)
+
+
+```
+
