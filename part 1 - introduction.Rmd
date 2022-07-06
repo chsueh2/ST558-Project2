@@ -23,5 +23,7 @@ knitr::opts_chunk$set(fig.path = "./images/")
 >
 > This section should be done by the ‘second’ group member. 
 
+Test
+
 
 ## Start here...

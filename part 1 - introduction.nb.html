@@ -11,7 +11,7 @@
 
 <meta name="author" content="Bridget Knapp and Chien-Lan Hsueh" />
 
-<meta name="date" content="2022-07-02" />
+<meta name="date" content="2022-07-05" />
 
 <title>ST558 Porject 1: Part 1</title>
 
@@ -1736,7 +1736,7 @@ pre code {
 
 <h1 class="title toc-ignore">ST558 Porject 1: Part 1</h1>
 <h4 class="author">Bridget Knapp and Chien-Lan Hsueh</h4>
-<h4 class="date">2022-07-02</h4>
+<h4 class="date">2022-07-05</h4>
 
 </div>
 
@@ -1754,13 +1754,14 @@ also mention the purpose of your analysis and the methods you’ll use to
 model the response. You’ll describe those in more detail later.</p>
 <p>This section should be done by the ‘second’ group member.</p>
 </blockquote>
+<p>Test</p>
 </div>
 <div id="start-here" class="section level2">
 <h2>Start here…</h2>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNUNTU4IFBvcmplY3QgMTogUGFydCAxIg0KYXV0aG9yOiAiQnJpZGdldCBLbmFwcCBhbmQgQ2hpZW4tTGFuIEhzdWVoIg0KaW5zdGl0dXRlOiBPbmxpbmUgU3RhdGlzdGljcyBNYXN0ZXIgUHJvZ3JhbSwgTkNTVQ0KZGF0ZTogImByIFN5cy5EYXRlKClgIg0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIGNvZGVfZm9sZGluZzogbm9uZQ0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZmlnLnBhdGggPSAiLi9pbWFnZXMvIikNCmBgYA0KDQoNCiMjIEludHJvZHVjdGlvbiBTZWN0aW9uDQoNCj4gWW91IHNob3VsZCBoYXZlIGFuIGludHJvZHVjdGlvbiBzZWN0aW9uIHRoYXQgYnJpZWZseSBkZXNjcmliZXMgdGhlIGRhdGEgYW5kIHRoZSB2YXJpYWJsZXMgeW91IGhhdmUgdG8gd29yayB3aXRoIChqdXN0IGRpc2N1c3MgdGhlIG9uZXMgeW91IHdhbnQgdG8gdXNlKS4gWW91ciB0YXJnZXQgdmFyaWFibGVzIGlzIHRoZSBzaGFyZXMgdmFyaWFibGUuIFlvdSBzaG91bGQgYWxzbyBtZW50aW9uIHRoZSBwdXJwb3NlIG9mIHlvdXIgYW5hbHlzaXMgYW5kIHRoZSBtZXRob2RzIHlvdeKAmWxsIHVzZSB0byBtb2RlbCB0aGUgcmVzcG9uc2UuIFlvdeKAmWxsIGRlc2NyaWJlIHRob3NlIGluIG1vcmUgZGV0YWlsIGxhdGVyLiANCj4NCj4gVGhpcyBzZWN0aW9uIHNob3VsZCBiZSBkb25lIGJ5IHRoZSDigJhzZWNvbmTigJkgZ3JvdXAgbWVtYmVyLiANCg0KDQojIyBTdGFydCBoZXJlLi4uDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNUNTU4IFBvcmplY3QgMTogUGFydCAxIg0KYXV0aG9yOiAiQnJpZGdldCBLbmFwcCBhbmQgQ2hpZW4tTGFuIEhzdWVoIg0KaW5zdGl0dXRlOiBPbmxpbmUgU3RhdGlzdGljcyBNYXN0ZXIgUHJvZ3JhbSwgTkNTVQ0KZGF0ZTogImByIFN5cy5EYXRlKClgIg0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIGNvZGVfZm9sZGluZzogbm9uZQ0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZmlnLnBhdGggPSAiLi9pbWFnZXMvIikNCmBgYA0KDQoNCiMjIEludHJvZHVjdGlvbiBTZWN0aW9uDQoNCj4gWW91IHNob3VsZCBoYXZlIGFuIGludHJvZHVjdGlvbiBzZWN0aW9uIHRoYXQgYnJpZWZseSBkZXNjcmliZXMgdGhlIGRhdGEgYW5kIHRoZSB2YXJpYWJsZXMgeW91IGhhdmUgdG8gd29yayB3aXRoIChqdXN0IGRpc2N1c3MgdGhlIG9uZXMgeW91IHdhbnQgdG8gdXNlKS4gWW91ciB0YXJnZXQgdmFyaWFibGVzIGlzIHRoZSBzaGFyZXMgdmFyaWFibGUuIFlvdSBzaG91bGQgYWxzbyBtZW50aW9uIHRoZSBwdXJwb3NlIG9mIHlvdXIgYW5hbHlzaXMgYW5kIHRoZSBtZXRob2RzIHlvdeKAmWxsIHVzZSB0byBtb2RlbCB0aGUgcmVzcG9uc2UuIFlvdeKAmWxsIGRlc2NyaWJlIHRob3NlIGluIG1vcmUgZGV0YWlsIGxhdGVyLiANCj4NCj4gVGhpcyBzZWN0aW9uIHNob3VsZCBiZSBkb25lIGJ5IHRoZSDigJhzZWNvbmTigJkgZ3JvdXAgbWVtYmVyLiANCg0KVGVzdA0KDQoNCiMjIFN0YXJ0IGhlcmUuLi4NCg==</div>
 
 
 
