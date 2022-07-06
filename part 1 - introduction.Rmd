@@ -19,11 +19,16 @@ knitr::opts_chunk$set(fig.path = "./images/")
 
 ## Introduction Section
 
+BK (7-5-2022): I'm going to keep the instructions below.
+
+Let's say you're interested in entertainment news and you would like to predict the number shares based on different criteria. Luckily, this repository is here to help. This will help you learn about our data set, make predictions, and create automated Markdown reports. First, let's look at the data:
+
+The news type is described in the `data_channel_is_*` columns. There are four types: Lifestyle, Entertainment, Business, Social Media, Tech, and World. The data also includes columns for the day of the week the article was published (`weekday_is_*`), the best, worst, and average keywords based on number of shares (`kw_*`); and negative or positive popularity (`*_polarity`).
+
 > You should have an introduction section that briefly describes the data and the variables you have to work with (just discuss the ones you want to use). Your target variables is the shares variable. You should also mention the purpose of your analysis and the methods you’ll use to model the response. You’ll describe those in more detail later. 
 >
 > This section should be done by the ‘second’ group member. 
 
-Test
 
 
 ## Start here...
