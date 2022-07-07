@@ -1860,16 +1860,88 @@ least three graphs (each) of the data.</p>
 <h2>Start here…</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBxdWljayBzdW1tYXJpZXMgb2YgbnVtZXJpYyBhbmQgY2F0ZWdvcmljYWwgdmFyaWFibGVzXG5za2ltKGRmKVxuYGBgIn0= -->
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># quick summaries of numeric and categorical variables</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(df)</span></code></pre></div>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBxdWljayBzdW1tYXJpZXMgb2YgbnVtZXJpYyBhbmQgY2F0ZWdvcmljYWwgdmFyaWFibGVzXG5za2ltKGRmKVxuYGBgXG5gYGAifQ== -->
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">r</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at"># quick summaries of numeric and categorical variables</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">skim(df)</span></span></code></pre></div>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+Can you make sure that my tables/graphs will work?
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0Egc3VtbWFyeSB0YWJsZSBzaG93aW5nIHRoZSBzYW1wbGUgc2l6ZSAoTiksIG1lYW4sIHN0YW5kYXJkIGRldmlhdGlvbiAoU3RkLiBEZXYuKSwgbWluaW11bSAoTWluKSwgMjV0aCBwZXJjZW50aWxlLCA3NXRoIHBlcmNlbnRpbGUsIGFuZCBtYXhpbXVtIChNYXgpXG5saWJyYXJ5KHZ0YWJsZSlcbnN0KGRmKVxuYGBgIn0= --&gt;
+
+```r
+#A summary table showing the sample size (N), mean, standard deviation (Std. Dev.), minimum (Min), 25th percentile, 75th percentile, and maximum (Max)
+library(vtable)
+st(df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0EgY29ycmVsYXRpb24gcGxvdCBzaG93aW5nIGFsbCBvZiB0aGUgcmVsYXRpb25zaGlwcyBiZXR3ZWVuIHRoZSB2YXJpYWJsZXMuXG5cbmNvcnJlbGF0aW9uX2ZpbHRlciA8LSBmdW5jdGlvbihjaGFubmVsX29mX2ludGVyZXN0KXtcbiAgaWYoY2hhbm5lbF9vZl9pbnRlcmVzdD09XCJMaWZlc3R5bGVcIikge2RmIDwtIHN1YnNldChkZiwgc2VsZWN0ID0gLWMoZGF0YV9jaGFubmVsX2lzX2xpZmVzdHlsZSkpfSBcbiAgXG4gIGlmKGNoYW5uZWxfb2ZfaW50ZXJlc3Q9PVwiRW50ZXJ0YWlubWVudFwiKXtkZiA8LSBzdWJzZXQoZGYsIHNlbGVjdCA9IC1jKGRhdGFfY2hhbm5lbF9pc19lbnRlcnRhaW5tZW50KSl9XG4gIFxuICBpZihjaGFubmVsX29mX2ludGVyZXN0PT1cIkJ1c2luZXNzXCIpe2RmIDwtIHN1YnNldChkZiwgc2VsZWN0ID0gLWMoZGF0YV9jaGFubmVsX2lzX2J1cykpfVxuICBcbiAgaWYoY2hhbm5lbF9vZl9pbnRlcmVzdD09XCJTb2NpYWxfTWVkaWFcIil7ZGYgPC0gc3Vic2V0KGRmLCBzZWxlY3QgPSAtYyhkYXRhX2NoYW5uZWxfaXNfc29jbWVkKSl9XG4gIFxuICBpZihjaGFubmVsX29mX2ludGVyZXN0PT1cIlRlY2hcIil7ZGYgPC0gc3Vic2V0KGRmLCBzZWxlY3QgPSAtYyhkYXRhX2NoYW5uZWxfaXNfdGVjaCkpfVxuICBcbiAgaWYoY2hhbm5lbF9vZl9pbnRlcmVzdD09XCJXb3JsZFwiKXtkZiA8LSBzdWJzZXQoZGYsIHNlbGVjdCA9IC1jKGRhdGFfY2hhbm5lbF9pc193b3JsZCkpfVxuICAgXG4gIHJldHVybihkZilcbn1cblxuZGYgPC0gY29ycmVsYXRpb25fZmlsdGVyKGNoYW5uZWwpICNzcGVjaWZ5IHdoaWNoIG5ld3MgY2hhbm5lbCB5b3Ugd2FudFxuZGYgPC0gZHBseXI6OnNlbGVjdF9pZihkZiwgaXMubnVtZXJpYylcblxuciA8LSBjb3IoZGYsIHVzZT1cImNvbXBsZXRlLm9ic1wiKVxubGlicmFyeShnZ3Bsb3QyKVxubGlicmFyeShnZ2NvcnJwbG90KVxuZ2djb3JycGxvdChyLCBcbiAgICAgICAgICAgaGMub3JkZXIgPSBUUlVFLCBcbiAgICAgICAgICAgdHlwZSA9IFwibG93ZXJcIixcbiAgICAgICAgICAgdGwuY2V4ID0gNilcblxuYGBgIn0= -->
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A correlation plot showing all of the relationships between the variables.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>correlation_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(channel_of_interest){</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(channel_of_interest<span class="sc">==</span><span class="st">&quot;Lifestyle&quot;</span>) {df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(data_channel_is_lifestyle))} </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(channel_of_interest<span class="sc">==</span><span class="st">&quot;Entertainment&quot;</span>){df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(data_channel_is_entertainment))}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(channel_of_interest<span class="sc">==</span><span class="st">&quot;Business&quot;</span>){df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(data_channel_is_bus))}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(channel_of_interest<span class="sc">==</span><span class="st">&quot;Social_Media&quot;</span>){df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(data_channel_is_socmed))}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(channel_of_interest<span class="sc">==</span><span class="st">&quot;Tech&quot;</span>){df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(data_channel_is_tech))}</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(channel_of_interest<span class="sc">==</span><span class="st">&quot;World&quot;</span>){df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(data_channel_is_world))}</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">correlation_filter</span>(channel) <span class="co">#specify which news channel you want</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select_if</span>(df, is.numeric)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">cor</span>(df, <span class="at">use=</span><span class="st">&quot;complete.obs&quot;</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorrplot</span>(r, </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">hc.order =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>           <span class="at">type =</span> <span class="st">&quot;lower&quot;</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>           <span class="at">tl.cex =</span> <span class="dv">6</span>)</span></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQSA8LSBkZiAlPiVcbiAgc2VsZWN0KGt3X2F2Z19tYXgsc2hhcmVzKVxuXG5nIDwtIGdncGxvdChBLCBhZXMoeCA9IGt3X2F2Z19tYXgpKVxuZyArIGdlb21faGlzdG9ncmFtKGNvbG9yID0gXCJibHVlXCIsIGZpbGwgPSBcInJlZFwiLFxuc2l6ZSA9IDIsIGJpbndpZHRoID0gMzApICtcbiAgbGFicyh4ID0gXCJCZXN0IEtleXdvcmQgKEF2ZXJhZ2UgTnVtYmVyIG9mIFNoYXJlcylcIiwgdGl0bGUgPSBcIkRpc3RyaWJ1dGlvbiBvZiBTaGFyZXMgYnkgQmVzdCBLZXl3b3JkXCIsIHk9XCJOdW1iZXIgb2YgU2hhcmVzXCIpXG5gYGAifQ== -->
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(kw_avg_max,shares)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(A, <span class="fu">aes</span>(<span class="at">x =</span> kw_avg_max))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">size =</span> <span class="dv">2</span>, <span class="at">binwidth =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Best Keyword (Average Number of Shares)&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Distribution of Shares by Best Keyword&quot;</span>, <span class="at">y=</span><span class="st">&quot;Number of Shares&quot;</span>)</span></code></pre></div>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNUNTU4IFBvcmplY3QgMTogUGFydCAzIg0KYXV0aG9yOiAiQnJpZGdldCBLbmFwcCBhbmQgQ2hpZW4tTGFuIEhzdWVoIg0KaW5zdGl0dXRlOiBPbmxpbmUgU3RhdGlzdGljcyBNYXN0ZXIgUHJvZ3JhbSwgTkNTVQ0KZGF0ZTogImByIFN5cy5EYXRlKClgIg0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIGNvZGVfZm9sZGluZzogbm9uZQ0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZmlnLnBhdGggPSAiLi9pbWFnZXMvIikNCmBgYA0KDQoNCiMjIFN1bW1hcml6YXRpb25zDQoNCj4gWW91IHNob3VsZCBwcm9kdWNlIHNvbWUgYmFzaWMgKGJ1dCBtZWFuaW5nZnVsKSBzdW1tYXJ5IHN0YXRpc3RpY3MgYW5kIHBsb3RzIGFib3V0IHRoZSB0cmFpbmluZyBkYXRhIHlvdQ0KYXJlIHdvcmtpbmcgd2l0aCAoZXNwZWNpYWxseSBhcyBpdCByZWxhdGVzIHRvIHlvdXIgcmVzcG9uc2UpLg0KPg0KPiBBcyB5b3Ugd2lsbCBhdXRvbWF0ZSB0aGlzIHNhbWUgYW5hbHlzaXMgYWNyb3NzIG90aGVyIGRhdGEsIHlvdSBjYW7igJl0IGRlc2NyaWJlIHRoZSB0cmVuZHMgeW91IHNlZSBpbiB0aGUgZ3JhcGggKHVubGVzcyB5b3Ugd2FudCB0byB0cnkgdG8gYXV0b21hdGUgdGhhdCEpLiBZb3Ugc2hvdWxkIGRlc2NyaWJlIHdoYXQgdG8gbG9vayBmb3IgaW4gdGhlIHN1bW1hcnkgc3RhdGlzdGljcy9wbG90cyB0byBoZWxwIHRoZSByZWFkZXIgdW5kZXJzdGFuZCB0aGUgc3VtbWFyeSBvciBncmFwaC4gRXg6IEEgc2NhdHRlciBwbG90IHdpdGggdGhlIG51bWJlciBvZiBzaGFyZXMgb24gdGhlIHktYXhpcyBhbmQgdGhlIHBvc2l0aXZlIHdvcmQgcmF0ZSBvbiB0aGUgeC1heGlzIGlzIGNyZWF0ZWQ6DQo+DQo+ICdXZSBjYW4gaW5zcGVjdCB0aGUgdHJlbmQgb2Ygc2hhcmVzIGFzIGEgZnVuY3Rpb24gb2YgdGhlIHBvc2l0aXZlIHdvcmQgcmF0ZS4gSWYgdGhlIHBvaW50cyBzaG93IGFuIHVwd2FyZCB0cmVuZCwgdGhlbiBhcnRpY2xlcyB3aXRoIG1vcmUgcG9zaXRpdmUgd29yZHMgdGVuZCB0byBiZSBzaGFyZWQgbW9yZSBvZnRlbi4gSWYgd2Ugc2VlIGEgbmVnYXRpdmUgdHJlbmQgdGhlbiBhcnRpY2xlcyB3aXRoIG1vcmUgcG9zaXRpdmUgd29yZHMgdGVuZCB0byBiZSBzaGFyZWQgbGVzcyBvZnRlbi4nDQo+DQo+IEVhY2ggZ3JvdXAgbWVtYmVyIGlzIHJlc3BvbnNpYmxlIGZvciBwcm9kdWNpbmcgc29tZSBzdW1tYXJ5IHN0YXRpc3RpY3MgKG1lYW5zLCBzZHMsIGNvbnRpbmdlbmN5IHRhYmxlcywgZXRjLikgYW5kIGZvciBwcm9kdWNpbmcgYXQgbGVhc3QgdGhyZWUgZ3JhcGhzIChlYWNoKSBvZiB0aGUgZGF0YS4NCg0KDQoNCiMjIFN0YXJ0IGhlcmUuLi4NCg0KDQoNCg0KYGBge3J9DQojIHF1aWNrIHN1bW1hcmllcyBvZiBudW1lcmljIGFuZCBjYXRlZ29yaWNhbCB2YXJpYWJsZXMNCnNraW0oZGYpDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNUNTU4IFBvcmplY3QgMTogUGFydCAzIg0KYXV0aG9yOiAiQnJpZGdldCBLbmFwcCBhbmQgQ2hpZW4tTGFuIEhzdWVoIg0KaW5zdGl0dXRlOiBPbmxpbmUgU3RhdGlzdGljcyBNYXN0ZXIgUHJvZ3JhbSwgTkNTVQ0KZGF0ZTogImByIFN5cy5EYXRlKClgIg0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIGNvZGVfZm9sZGluZzogbm9uZQ0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZmlnLnBhdGggPSAiLi9pbWFnZXMvIikNCmBgYA0KDQoNCiMjIFN1bW1hcml6YXRpb25zDQoNCj4gWW91IHNob3VsZCBwcm9kdWNlIHNvbWUgYmFzaWMgKGJ1dCBtZWFuaW5nZnVsKSBzdW1tYXJ5IHN0YXRpc3RpY3MgYW5kIHBsb3RzIGFib3V0IHRoZSB0cmFpbmluZyBkYXRhIHlvdQ0KYXJlIHdvcmtpbmcgd2l0aCAoZXNwZWNpYWxseSBhcyBpdCByZWxhdGVzIHRvIHlvdXIgcmVzcG9uc2UpLg0KPg0KPiBBcyB5b3Ugd2lsbCBhdXRvbWF0ZSB0aGlzIHNhbWUgYW5hbHlzaXMgYWNyb3NzIG90aGVyIGRhdGEsIHlvdSBjYW7igJl0IGRlc2NyaWJlIHRoZSB0cmVuZHMgeW91IHNlZSBpbiB0aGUgZ3JhcGggKHVubGVzcyB5b3Ugd2FudCB0byB0cnkgdG8gYXV0b21hdGUgdGhhdCEpLiBZb3Ugc2hvdWxkIGRlc2NyaWJlIHdoYXQgdG8gbG9vayBmb3IgaW4gdGhlIHN1bW1hcnkgc3RhdGlzdGljcy9wbG90cyB0byBoZWxwIHRoZSByZWFkZXIgdW5kZXJzdGFuZCB0aGUgc3VtbWFyeSBvciBncmFwaC4gRXg6IEEgc2NhdHRlciBwbG90IHdpdGggdGhlIG51bWJlciBvZiBzaGFyZXMgb24gdGhlIHktYXhpcyBhbmQgdGhlIHBvc2l0aXZlIHdvcmQgcmF0ZSBvbiB0aGUgeC1heGlzIGlzIGNyZWF0ZWQ6DQo+DQo+ICdXZSBjYW4gaW5zcGVjdCB0aGUgdHJlbmQgb2Ygc2hhcmVzIGFzIGEgZnVuY3Rpb24gb2YgdGhlIHBvc2l0aXZlIHdvcmQgcmF0ZS4gSWYgdGhlIHBvaW50cyBzaG93IGFuIHVwd2FyZCB0cmVuZCwgdGhlbiBhcnRpY2xlcyB3aXRoIG1vcmUgcG9zaXRpdmUgd29yZHMgdGVuZCB0byBiZSBzaGFyZWQgbW9yZSBvZnRlbi4gSWYgd2Ugc2VlIGEgbmVnYXRpdmUgdHJlbmQgdGhlbiBhcnRpY2xlcyB3aXRoIG1vcmUgcG9zaXRpdmUgd29yZHMgdGVuZCB0byBiZSBzaGFyZWQgbGVzcyBvZnRlbi4nDQo+DQo+IEVhY2ggZ3JvdXAgbWVtYmVyIGlzIHJlc3BvbnNpYmxlIGZvciBwcm9kdWNpbmcgc29tZSBzdW1tYXJ5IHN0YXRpc3RpY3MgKG1lYW5zLCBzZHMsIGNvbnRpbmdlbmN5IHRhYmxlcywgZXRjLikgYW5kIGZvciBwcm9kdWNpbmcgYXQgbGVhc3QgdGhyZWUgZ3JhcGhzIChlYWNoKSBvZiB0aGUgZGF0YS4NCg0KDQoNCiMjIFN0YXJ0IGhlcmUuLi4NCg0KDQpgYGB7cn0NCiMgcXVpY2sgc3VtbWFyaWVzIG9mIG51bWVyaWMgYW5kIGNhdGVnb3JpY2FsIHZhcmlhYmxlcw0Kc2tpbShkZikNCmBgYA0KDQpDYW4geW91IG1ha2Ugc3VyZSB0aGF0IG15IHRhYmxlcy9ncmFwaHMgd2lsbCB3b3JrPw0KDQpgYGB7ciA1OjU0XzdfNl8yMDIyLHdhcm5pbmc9RkFMU0UsbWVzc2FnZT1GQUxTRX0NCiNBIHN1bW1hcnkgdGFibGUgc2hvd2luZyB0aGUgc2FtcGxlIHNpemUgKE4pLCBtZWFuLCBzdGFuZGFyZCBkZXZpYXRpb24gKFN0ZC4gRGV2LiksIG1pbmltdW0gKE1pbiksIDI1dGggcGVyY2VudGlsZSwgNzV0aCBwZXJjZW50aWxlLCBhbmQgbWF4aW11bSAoTWF4KQ0KbGlicmFyeSh2dGFibGUpDQpzdChkZikNCmBgYA0KDQpgYGB7ciA1OjQ5XzdfNl8yMDIyLHdhcm5pbmc9RkFMU0UsbWVzc2FnZT1GQUxTRX0NCiNBIGNvcnJlbGF0aW9uIHBsb3Qgc2hvd2luZyBhbGwgb2YgdGhlIHJlbGF0aW9uc2hpcHMgYmV0d2VlbiB0aGUgdmFyaWFibGVzLg0KDQpjb3JyZWxhdGlvbl9maWx0ZXIgPC0gZnVuY3Rpb24oY2hhbm5lbF9vZl9pbnRlcmVzdCl7DQogIGlmKGNoYW5uZWxfb2ZfaW50ZXJlc3Q9PSJMaWZlc3R5bGUiKSB7ZGYgPC0gc3Vic2V0KGRmLCBzZWxlY3QgPSAtYyhkYXRhX2NoYW5uZWxfaXNfbGlmZXN0eWxlKSl9IA0KICANCiAgaWYoY2hhbm5lbF9vZl9pbnRlcmVzdD09IkVudGVydGFpbm1lbnQiKXtkZiA8LSBzdWJzZXQoZGYsIHNlbGVjdCA9IC1jKGRhdGFfY2hhbm5lbF9pc19lbnRlcnRhaW5tZW50KSl9DQogIA0KICBpZihjaGFubmVsX29mX2ludGVyZXN0PT0iQnVzaW5lc3MiKXtkZiA8LSBzdWJzZXQoZGYsIHNlbGVjdCA9IC1jKGRhdGFfY2hhbm5lbF9pc19idXMpKX0NCiAgDQogIGlmKGNoYW5uZWxfb2ZfaW50ZXJlc3Q9PSJTb2NpYWxfTWVkaWEiKXtkZiA8LSBzdWJzZXQoZGYsIHNlbGVjdCA9IC1jKGRhdGFfY2hhbm5lbF9pc19zb2NtZWQpKX0NCiAgDQogIGlmKGNoYW5uZWxfb2ZfaW50ZXJlc3Q9PSJUZWNoIil7ZGYgPC0gc3Vic2V0KGRmLCBzZWxlY3QgPSAtYyhkYXRhX2NoYW5uZWxfaXNfdGVjaCkpfQ0KICANCiAgaWYoY2hhbm5lbF9vZl9pbnRlcmVzdD09IldvcmxkIil7ZGYgPC0gc3Vic2V0KGRmLCBzZWxlY3QgPSAtYyhkYXRhX2NoYW5uZWxfaXNfd29ybGQpKX0NCiAgIA0KICByZXR1cm4oZGYpDQp9DQoNCmRmIDwtIGNvcnJlbGF0aW9uX2ZpbHRlcihjaGFubmVsKSAjc3BlY2lmeSB3aGljaCBuZXdzIGNoYW5uZWwgeW91IHdhbnQNCmRmIDwtIGRwbHlyOjpzZWxlY3RfaWYoZGYsIGlzLm51bWVyaWMpDQoNCnIgPC0gY29yKGRmLCB1c2U9ImNvbXBsZXRlLm9icyIpDQpsaWJyYXJ5KGdncGxvdDIpDQpsaWJyYXJ5KGdnY29ycnBsb3QpDQpnZ2NvcnJwbG90KHIsIA0KICAgICAgICAgICBoYy5vcmRlciA9IFRSVUUsIA0KICAgICAgICAgICB0eXBlID0gImxvd2VyIiwNCiAgICAgICAgICAgdGwuY2V4ID0gNikNCg0KYGBgDQoNCmBgYHtyIDY6NTdfN182XzIwMjJ9DQpBIDwtIGRmICU+JQ0KICBzZWxlY3Qoa3dfYXZnX21heCxzaGFyZXMpDQoNCmcgPC0gZ2dwbG90KEEsIGFlcyh4ID0ga3dfYXZnX21heCkpDQpnICsgZ2VvbV9oaXN0b2dyYW0oY29sb3IgPSAiYmx1ZSIsIGZpbGwgPSAicmVkIiwNCnNpemUgPSAyLCBiaW53aWR0aCA9IDMwKSArDQogIGxhYnMoeCA9ICJCZXN0IEtleXdvcmQgKEF2ZXJhZ2UgTnVtYmVyIG9mIFNoYXJlcykiLCB0aXRsZSA9ICJEaXN0cmlidXRpb24gb2YgU2hhcmVzIGJ5IEJlc3QgS2V5d29yZCIsIHk9Ik51bWJlciBvZiBTaGFyZXMiKQ0KYGBgDQoNCg0K</div>
 
 
 

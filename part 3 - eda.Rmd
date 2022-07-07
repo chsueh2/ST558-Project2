@@ -33,10 +33,59 @@ are working with (especially as it relates to your response).
 ## Start here...
 
 
-
-
 ```{r}
 # quick summaries of numeric and categorical variables
 skim(df)
 ```
+
+Can you make sure that my tables/graphs will work?
+
+```{r 5:54_7_6_2022,warning=FALSE,message=FALSE}
+#A summary table showing the sample size (N), mean, standard deviation (Std. Dev.), minimum (Min), 25th percentile, 75th percentile, and maximum (Max)
+library(vtable)
+st(df)
+```
+
+```{r 5:49_7_6_2022,warning=FALSE,message=FALSE}
+#A correlation plot showing all of the relationships between the variables.
+
+correlation_filter <- function(channel_of_interest){
+  if(channel_of_interest=="Lifestyle") {df <- subset(df, select = -c(data_channel_is_lifestyle))} 
+  
+  if(channel_of_interest=="Entertainment"){df <- subset(df, select = -c(data_channel_is_entertainment))}
+  
+  if(channel_of_interest=="Business"){df <- subset(df, select = -c(data_channel_is_bus))}
+  
+  if(channel_of_interest=="Social_Media"){df <- subset(df, select = -c(data_channel_is_socmed))}
+  
+  if(channel_of_interest=="Tech"){df <- subset(df, select = -c(data_channel_is_tech))}
+  
+  if(channel_of_interest=="World"){df <- subset(df, select = -c(data_channel_is_world))}
+   
+  return(df)
+}
+
+df <- correlation_filter(channel) #specify which news channel you want
+df <- dplyr::select_if(df, is.numeric)
+
+r <- cor(df, use="complete.obs")
+library(ggplot2)
+library(ggcorrplot)
+ggcorrplot(r, 
+           hc.order = TRUE, 
+           type = "lower",
+           tl.cex = 6)
+
+```
+
+```{r 6:57_7_6_2022}
+A <- df %>%
+  select(kw_avg_max,shares)
+
+g <- ggplot(A, aes(x = kw_avg_max))
+g + geom_histogram(color = "blue", fill = "red",
+size = 2, binwidth = 30) +
+  labs(x = "Best Keyword (Average Number of Shares)", title = "Distribution of Shares by Best Keyword", y="Number of Shares")
+```
+
 
