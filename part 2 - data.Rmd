@@ -137,10 +137,6 @@ set.seed(2022)
 trainIndex <- createDataPartition(df$shares, p = 0.7, list = F)
 df_train <- df[trainIndex, ]
 df_test <- df[-trainIndex, ]
-
-# check balance - compare ecdf of train and test sets
-plot(ecdf(df_train$shares), col = "blue", main = "Empirical Cumulative Distribution", xlab = "shares")
-plot(ecdf(df_test$shares), col = "red", add = T)
 ```
 
 

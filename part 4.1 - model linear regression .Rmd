@@ -31,4 +31,11 @@ knitr::opts_chunk$set(fig.path = "./images/")
 
 
 
+```{r, include = FALSE}
+knitr::knit("part 2 - data.Rmd", output = tempfile())
+```
+
+
 ## Start here...
+
+

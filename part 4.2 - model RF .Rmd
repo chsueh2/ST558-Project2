@@ -30,5 +30,8 @@ knitr::opts_chunk$set(fig.path = "./images/")
 > Prior to each ensemble model, you should provide a short but reasonably thorough explanation of the ensemble model you are using (so one for each group member).
 
 
+```{r, include = FALSE}
+knitr::knit("part 2 - data.Rmd", output = tempfile())
+```
 
 ## Start here...

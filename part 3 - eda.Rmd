@@ -29,14 +29,27 @@ are working with (especially as it relates to your response).
 > Each group member is responsible for producing some summary statistics (means, sds, contingency tables, etc.) and for producing at least three graphs (each) of the data.
 
 
+"part 2 - data.Rmd"
+
+
+```{r, include = FALSE}
+knitr::knit("part 2 - data.Rmd", output = tempfile())
+```
+
+
 
 ## Start here...
 
+```{r}
+# check balance - compare ecdf of train and test sets
+plot(ecdf(df_train$shares), col = "blue", main = "Empirical Cumulative Distribution", xlab = "shares")
+plot(ecdf(df_test$shares), col = "red", add = T)
+```
 
 
 
 ```{r}
 # quick summaries of numeric and categorical variables
-skim(df)
+skim(df_train)
 ```
 
