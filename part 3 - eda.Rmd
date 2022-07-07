@@ -47,9 +47,29 @@ plot(ecdf(df_test$shares), col = "red", add = T)
 ```
 
 
+```{r}
+table(df_train$channel)
+channel <- "lifestyle"          
+
+# subset by channel
+df_train_x <- df_train %>% filter(channel == channel)
+df_test_x <- df_test %>% filter(channel == channel)
+```
+
+
+
+
 
 ```{r}
 # quick summaries of numeric and categorical variables
-skim(df_train)
+skim(df_train_x)
 ```
 
+
+
+```{r}
+mean(df_train_x$shares)
+```
+
+
+Form `r channel` news channel subset, we found the mean of `shares` is `r mean(df_train_x, na.rm)`.
