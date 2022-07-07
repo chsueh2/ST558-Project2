@@ -31,3 +31,12 @@ are working with (especially as it relates to your response).
 
 
 ## Start here...
+
+
+
+
+```{r}
+# quick summaries of numeric and categorical variables
+skim(df)
+```
+

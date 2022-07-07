@@ -17,76 +17,126 @@ knitr::opts_chunk$set(fig.path = "./images/")
 ```
 
 
+
+```{r, include=FALSE}
+if (!require("pacman")) utils::install.packages("pacman", dependencies = TRUE)
+
+pacman::p_load(
+  here,
+  stats,
+  tidyverse,
+  lubridate,
+  glue,
+  skimr,
+  caret,
+  rpart, randomForest, gbm
+)
+```
+
 ## Data
 
-> Use a relative path to import the data. Subset the data to work on the data channel of interest.
->
-> This section should be done by whoever can get to it first.
 
+The data file is saved in the `data` folder. After reading the raw data, we first check what variables it contains and if there is any missing or NA data.
 
-## Start here...
+```{r}
+df_raw <- read_csv(here("data", "OnlineNewsPopularity.csv"))
+ 
+# show the raw data
+head(df_raw)
 
-```{r render, echo = FALSE, eval = FALSE}
-rmarkdown::render("part 2 - data.Rmd",
-                  output_format = "github_document",
-                  output_options = list(
-                    toc = TRUE,
-                    html_preview=FALSE) 
-)
+# check structure
+str(df_raw)
 
+# check if any missing values
+anyNA(df_raw)
 ```
 
-```{r 8:36 7_5_2022,message=FALSE,warning=FALSE}
-library(tidyverse)
-library(readr)
+First we check on the six `data_channel_is_*` columns with an one-way table on the sum of their values for each row (record):
 
-data<-read_csv("../ST558-Project2/data/OnlineNewsPopularity.csv")
-head(data)
+```{r}
+# create a count table on the sum of the six `data_channel_is_*` columns
+tbl_channel_raw <- df_raw %>% 
+  # deal with columns of interest only for computing efficiency
+  select(starts_with("data_channel_is_")) %>% 
+  mutate(sum_of_channels = rowSums(across(everything()))) %>% 
+  select(sum_of_channels) %>% 
+  # create an one-way table for counts
+  table()
+
+tbl_channel_raw
 ```
 
-Subset the data to work on the data channel of interest.
+Among the `r sum(tbl_channel_raw)` record, `r tbl_channel_raw["1"]` records are from one of the 6 channels (`lifestyle`, `entertainment`, `bus` for business, `socmed` for social media, `tech` and `world`) and the other `r tbl_channel_raw["0"]` are from the other channel (not included in these 6 channels). Therefore, we can create a new data channel `misc` to label the. 
 
-```{r 8:49_7_5_2022}
-#Lifestyle, Entertainment, Business, Social Media, Tech, and World
+Next, we will prepare the data with the following steps:
 
-subset_data <- function(channel_of_interest){
-  if(channel_of_interest=="Lifestyle"){
-    new_data = subset(data, select = -c(data_channel_is_entertainment,data_channel_is_bus,data_channel_is_socmed,data_channel_is_tech,data_channel_is_world) )
-  }
-  if(channel_of_interest=="Entertainment"){
-    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_bus,data_channel_is_socmed,data_channel_is_tech,data_channel_is_world) )
-  }
-   if(channel_of_interest=="Business"){
-    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_socmed,data_channel_is_tech,data_channel_is_world) )
-   }
-   if(channel_of_interest=="Social_Media"){
-    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_bus,data_channel_is_tech,data_channel_is_world) )
-   }
-   if(channel_of_interest=="Tech"){
-    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_bus,data_channel_is_socmed,data_channel_is_world) )
-   }
-   if(channel_of_interest=="World"){
-    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_bus,data_channel_is_socmed,data_channel_is_tech) )
-  }
-  return(new_data)
-}
+- remove `url` and `timedelta` since we are not using them as predictors (non-predictive)
+- create a new column `data_channel_is_misc` for those records not from the 6 channels
+- convert the 7 `data_channel_is_*` columns (original 6 + newly created 1 in the last step) into a long-form column `channel`
+- convert the 7 `weekday_is_*` columns into a long-column `weekday`
+- remove the columns created in the intermediate steps
+- convert categorical variables `channel`, `weekday` and `is_weekend` to factors
+- move the response variable `shares` and the categorical predictors `channel`, `weekday` and `is_weekend` to the first columns for easy handling when analyzing models
 
-Lifestyle_data <- subset_data(channel_of_interest="Lifestyle")
-head(Lifestyle_data)
 
-Entertainment_data <- subset_data(channel_of_interest="Entertainment")
-head(Entertainment_data)
+```{r}
+df <- df_raw %>% 
+  select(-url, -timedelta) %>% 
+  mutate(
+    sum_of_channels = rowSums(across(starts_with("data_channel_is_"))),
+    # label records not from the 6 channels
+    data_channel_is_misc = as.integer(sum_of_channels == 0)
+  ) %>% 
+  # pivot the channel columns (to a long form)
+  pivot_longer(
+    cols = starts_with("data_channel_is_"),
+    names_to = "channel",
+    names_prefix = "data_channel_is_",
+    values_to = "channel_indicator"
+  ) %>% 
+  # pivot the channel columns (to a long form)
+  pivot_longer(
+    cols = starts_with("weekday_is_"),
+    names_to = "weekday",
+    names_prefix = "weekday_is_",
+    values_to = "weekday_indicator"
+  ) %>% 
+  # remove redundant records
+  filter(
+    channel_indicator == 1,
+    weekday_indicator == 1
+  ) %>% 
+  # remove redundant columns
+  select(-sum_of_channels, -channel_indicator, -weekday_indicator) %>% 
+  # convert categorical variables to factors
+  mutate(
+    channel = factor(channel),
+    weekday = factor(weekday, levels = levels(wday(Sys.Date(), label = T, abbr = F)) %>% str_to_lower()),
+    is_weekend = if_else(is_weekend == 1, "Y", "N") %>% factor()
+  ) %>% 
+  relocate(shares, channel, weekday, is_weekend)
 
-Business_data <- subset_data(channel_of_interest="Business")
-head(Business_data)
-
-Social_Media_data <- subset_data(channel_of_interest="Social_Media")
-head(Social_Media_data)
-
-Tech_data <- subset_data(channel_of_interest="Tech")
-head(Tech_data)
-
-World_data <- subset_data(channel_of_interest="World")
-head(World_data)
-
+# show the data frame
+df
 ```
+Note that the data frame has the same number of rows with the raw data.
+
+
+## Split the Data
+
+We use `caret::createDataPartition()` to create a 70/30 split of training and test sets. This is done with `set.seed()`
+to make this analysis reproducible.
+```{r}
+set.seed(2022)
+
+# split data
+trainIndex <- createDataPartition(df$shares, p = 0.7, list = F)
+df_train <- df[trainIndex, ]
+df_test <- df[-trainIndex, ]
+
+# check balance - compare ecdf of train and test sets
+plot(ecdf(df_train$shares), col = "blue", main = "Empirical Cumulative Distribution", xlab = "shares")
+plot(ecdf(df_test$shares), col = "red", add = T)
+```
+
+

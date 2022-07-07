@@ -11,7 +11,7 @@
 
 <meta name="author" content="Bridget Knapp and Chien-Lan Hsueh" />
 
-<meta name="date" content="2022-07-02" />
+<meta name="date" content="2022-07-07" />
 
 <title>ST558 Porject 1: Part 3</title>
 
@@ -1582,6 +1582,96 @@ window.initializeSourceEmbed = function(filename) {
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -1736,7 +1826,7 @@ pre code {
 
 <h1 class="title toc-ignore">ST558 Porject 1: Part 3</h1>
 <h4 class="author">Bridget Knapp and Chien-Lan Hsueh</h4>
-<h4 class="date">2022-07-02</h4>
+<h4 class="date">2022-07-07</h4>
 
 </div>
 
@@ -1769,9 +1859,17 @@ least three graphs (each) of the data.</p>
 <div id="start-here" class="section level2">
 <h2>Start here…</h2>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBxdWljayBzdW1tYXJpZXMgb2YgbnVtZXJpYyBhbmQgY2F0ZWdvcmljYWwgdmFyaWFibGVzXG5za2ltKGRmKVxuYGBgIn0= -->
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># quick summaries of numeric and categorical variables</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(df)</span></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNUNTU4IFBvcmplY3QgMTogUGFydCAzIg0KYXV0aG9yOiAiQnJpZGdldCBLbmFwcCBhbmQgQ2hpZW4tTGFuIEhzdWVoIg0KaW5zdGl0dXRlOiBPbmxpbmUgU3RhdGlzdGljcyBNYXN0ZXIgUHJvZ3JhbSwgTkNTVQ0KZGF0ZTogImByIFN5cy5EYXRlKClgIg0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIGNvZGVfZm9sZGluZzogbm9uZQ0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZmlnLnBhdGggPSAiLi9pbWFnZXMvIikNCmBgYA0KDQoNCiMjIFN1bW1hcml6YXRpb25zDQoNCj4gWW91IHNob3VsZCBwcm9kdWNlIHNvbWUgYmFzaWMgKGJ1dCBtZWFuaW5nZnVsKSBzdW1tYXJ5IHN0YXRpc3RpY3MgYW5kIHBsb3RzIGFib3V0IHRoZSB0cmFpbmluZyBkYXRhIHlvdQ0KYXJlIHdvcmtpbmcgd2l0aCAoZXNwZWNpYWxseSBhcyBpdCByZWxhdGVzIHRvIHlvdXIgcmVzcG9uc2UpLg0KPg0KPiBBcyB5b3Ugd2lsbCBhdXRvbWF0ZSB0aGlzIHNhbWUgYW5hbHlzaXMgYWNyb3NzIG90aGVyIGRhdGEsIHlvdSBjYW7igJl0IGRlc2NyaWJlIHRoZSB0cmVuZHMgeW91IHNlZSBpbiB0aGUgZ3JhcGggKHVubGVzcyB5b3Ugd2FudCB0byB0cnkgdG8gYXV0b21hdGUgdGhhdCEpLiBZb3Ugc2hvdWxkIGRlc2NyaWJlIHdoYXQgdG8gbG9vayBmb3IgaW4gdGhlIHN1bW1hcnkgc3RhdGlzdGljcy9wbG90cyB0byBoZWxwIHRoZSByZWFkZXIgdW5kZXJzdGFuZCB0aGUgc3VtbWFyeSBvciBncmFwaC4gRXg6IEEgc2NhdHRlciBwbG90IHdpdGggdGhlIG51bWJlciBvZiBzaGFyZXMgb24gdGhlIHktYXhpcyBhbmQgdGhlIHBvc2l0aXZlIHdvcmQgcmF0ZSBvbiB0aGUgeC1heGlzIGlzIGNyZWF0ZWQ6DQo+DQo+ICdXZSBjYW4gaW5zcGVjdCB0aGUgdHJlbmQgb2Ygc2hhcmVzIGFzIGEgZnVuY3Rpb24gb2YgdGhlIHBvc2l0aXZlIHdvcmQgcmF0ZS4gSWYgdGhlIHBvaW50cyBzaG93IGFuIHVwd2FyZCB0cmVuZCwgdGhlbiBhcnRpY2xlcyB3aXRoIG1vcmUgcG9zaXRpdmUgd29yZHMgdGVuZCB0byBiZSBzaGFyZWQgbW9yZSBvZnRlbi4gSWYgd2Ugc2VlIGEgbmVnYXRpdmUgdHJlbmQgdGhlbiBhcnRpY2xlcyB3aXRoIG1vcmUgcG9zaXRpdmUgd29yZHMgdGVuZCB0byBiZSBzaGFyZWQgbGVzcyBvZnRlbi4nDQo+DQo+IEVhY2ggZ3JvdXAgbWVtYmVyIGlzIHJlc3BvbnNpYmxlIGZvciBwcm9kdWNpbmcgc29tZSBzdW1tYXJ5IHN0YXRpc3RpY3MgKG1lYW5zLCBzZHMsIGNvbnRpbmdlbmN5IHRhYmxlcywgZXRjLikgYW5kIGZvciBwcm9kdWNpbmcgYXQgbGVhc3QgdGhyZWUgZ3JhcGhzIChlYWNoKSBvZiB0aGUgZGF0YS4NCg0KDQoNCiMjIFN0YXJ0IGhlcmUuLi4NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNUNTU4IFBvcmplY3QgMTogUGFydCAzIg0KYXV0aG9yOiAiQnJpZGdldCBLbmFwcCBhbmQgQ2hpZW4tTGFuIEhzdWVoIg0KaW5zdGl0dXRlOiBPbmxpbmUgU3RhdGlzdGljcyBNYXN0ZXIgUHJvZ3JhbSwgTkNTVQ0KZGF0ZTogImByIFN5cy5EYXRlKClgIg0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIGNvZGVfZm9sZGluZzogbm9uZQ0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZmlnLnBhdGggPSAiLi9pbWFnZXMvIikNCmBgYA0KDQoNCiMjIFN1bW1hcml6YXRpb25zDQoNCj4gWW91IHNob3VsZCBwcm9kdWNlIHNvbWUgYmFzaWMgKGJ1dCBtZWFuaW5nZnVsKSBzdW1tYXJ5IHN0YXRpc3RpY3MgYW5kIHBsb3RzIGFib3V0IHRoZSB0cmFpbmluZyBkYXRhIHlvdQ0KYXJlIHdvcmtpbmcgd2l0aCAoZXNwZWNpYWxseSBhcyBpdCByZWxhdGVzIHRvIHlvdXIgcmVzcG9uc2UpLg0KPg0KPiBBcyB5b3Ugd2lsbCBhdXRvbWF0ZSB0aGlzIHNhbWUgYW5hbHlzaXMgYWNyb3NzIG90aGVyIGRhdGEsIHlvdSBjYW7igJl0IGRlc2NyaWJlIHRoZSB0cmVuZHMgeW91IHNlZSBpbiB0aGUgZ3JhcGggKHVubGVzcyB5b3Ugd2FudCB0byB0cnkgdG8gYXV0b21hdGUgdGhhdCEpLiBZb3Ugc2hvdWxkIGRlc2NyaWJlIHdoYXQgdG8gbG9vayBmb3IgaW4gdGhlIHN1bW1hcnkgc3RhdGlzdGljcy9wbG90cyB0byBoZWxwIHRoZSByZWFkZXIgdW5kZXJzdGFuZCB0aGUgc3VtbWFyeSBvciBncmFwaC4gRXg6IEEgc2NhdHRlciBwbG90IHdpdGggdGhlIG51bWJlciBvZiBzaGFyZXMgb24gdGhlIHktYXhpcyBhbmQgdGhlIHBvc2l0aXZlIHdvcmQgcmF0ZSBvbiB0aGUgeC1heGlzIGlzIGNyZWF0ZWQ6DQo+DQo+ICdXZSBjYW4gaW5zcGVjdCB0aGUgdHJlbmQgb2Ygc2hhcmVzIGFzIGEgZnVuY3Rpb24gb2YgdGhlIHBvc2l0aXZlIHdvcmQgcmF0ZS4gSWYgdGhlIHBvaW50cyBzaG93IGFuIHVwd2FyZCB0cmVuZCwgdGhlbiBhcnRpY2xlcyB3aXRoIG1vcmUgcG9zaXRpdmUgd29yZHMgdGVuZCB0byBiZSBzaGFyZWQgbW9yZSBvZnRlbi4gSWYgd2Ugc2VlIGEgbmVnYXRpdmUgdHJlbmQgdGhlbiBhcnRpY2xlcyB3aXRoIG1vcmUgcG9zaXRpdmUgd29yZHMgdGVuZCB0byBiZSBzaGFyZWQgbGVzcyBvZnRlbi4nDQo+DQo+IEVhY2ggZ3JvdXAgbWVtYmVyIGlzIHJlc3BvbnNpYmxlIGZvciBwcm9kdWNpbmcgc29tZSBzdW1tYXJ5IHN0YXRpc3RpY3MgKG1lYW5zLCBzZHMsIGNvbnRpbmdlbmN5IHRhYmxlcywgZXRjLikgYW5kIGZvciBwcm9kdWNpbmcgYXQgbGVhc3QgdGhyZWUgZ3JhcGhzIChlYWNoKSBvZiB0aGUgZGF0YS4NCg0KDQoNCiMjIFN0YXJ0IGhlcmUuLi4NCg0KDQoNCg0KYGBge3J9DQojIHF1aWNrIHN1bW1hcmllcyBvZiBudW1lcmljIGFuZCBjYXRlZ29yaWNhbCB2YXJpYWJsZXMNCnNraW0oZGYpDQpgYGANCg0K</div>
 
 
 
