@@ -52,25 +52,14 @@ df_raw <- read_csv(here("data", "OnlineNewsPopularity.csv"))
 # show the raw data
 head(df_raw)
 
-<<<<<<< HEAD
 # check structure
 str(df_raw)
-=======
-```{r render, eval = FALSE}
-#this is the code I used to render this document before I committed changes to the repository
-rmarkdown::render("part 2 - data.Rmd",
-                  output_format = "github_document",
-                  output_options = list(
-                    toc = TRUE,
-                    html_preview=FALSE) 
-)
->>>>>>> 31deafe31301d3ed4f29a98daff0e1bcf89d37e3
 
 # check if any missing values
 anyNA(df_raw)
 ```
 
-<<<<<<< HEAD
+
 First we check on the six `data_channel_is_*` columns with an one-way table on the sum of their values for each row (record):
 
 ```{r}
@@ -84,37 +73,13 @@ tbl_channel_raw <- df_raw %>%
   table()
 
 tbl_channel_raw
-=======
-```{r 6:20_7_6_2022, eval = FALSE}
-#In order to make one html output for each news channel, run this code in the console first
-channel_list <- c("Lifestyle", "Entertainment", "Business", "Social_Media", "Tech", "World")
-output_file <- paste0(channel_list,".html")
-params <- lapply(channel_list, FUN = function(x){list(data_channel_is=x)})
-reports <- tibble(output_file,params)
 
-library(rmarkdown)
-apply(reports, MARGIN = 1,
-      FUN = function(x){
-        render(input="C://Users//Bridget//OneDrive//R_Scripts//test_7_6_2022.Rmd",
-               output_file = x[[1]],
-               params = x[[2]],
-               output_format = "github_document",
-               output_options = list(html_preview=FALSE))
-      })
 ```
 
-
-```{r 8:36 7_5_2022,message=FALSE,warning=FALSE}
-library(tidyverse)
-library(readr)
-data<-read_csv("../ST558-Project2/data/OnlineNewsPopularity.csv")
-head(data)
->>>>>>> 31deafe31301d3ed4f29a98daff0e1bcf89d37e3
-```
 
 Among the `r sum(tbl_channel_raw)` record, `r tbl_channel_raw["1"]` records are from one of the 6 channels (`lifestyle`, `entertainment`, `bus` for business, `socmed` for social media, `tech` and `world`) and the other `r tbl_channel_raw["0"]` are from the other channel (not included in these 6 channels). Therefore, we can create a new data channel `misc` to label the. 
 
-<<<<<<< HEAD
+
 Next, we will prepare the data with the following steps:
 
 - remove `url` and `timedelta` since we are not using them as predictors (non-predictive)
@@ -162,73 +127,7 @@ df <- df_raw %>%
     is_weekend = if_else(is_weekend == 1, "Y", "N") %>% factor()
   ) %>% 
   relocate(shares, channel, weekday, is_weekend)
-=======
-```{r 8:49_7_5_2022}
-#This code processes the data. It removes excess data_channel_is_ columns and filters the column we want so that it only includes values of 1. For example, if you want the "Lifestyle" data, this function will remove the other data channel columns (Entertainment, Business, Social Media, Tech, and World) and filter it so that it only includes data where data_channel_is_lifestyle == 1.
 
-library(tidyverse)
-library(readr)
-library(shiny)
-data<-read_csv("C://Users//Bridget//OneDrive//R_Scripts//repos//ST558-Project2//data//OnlineNewsPopularity.csv")
-head(data)
-channel <- params$data_channel_is
-channel
-
-subset_data <- function(channel_of_interest){
-  if(channel_of_interest=="Lifestyle"){
-    new_data = subset(data, select = -c(data_channel_is_entertainment,data_channel_is_bus,data_channel_is_socmed,data_channel_is_tech,data_channel_is_world))
-    new_data <- filter(new_data, data_channel_is_lifestyle == 1)
-  }
-  if(channel_of_interest=="Entertainment"){
-    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_bus,data_channel_is_socmed,data_channel_is_tech,data_channel_is_world) )
-    new_data <- filter(new_data, data_channel_is_entertainment == 1)
-  }
-   if(channel_of_interest=="Business"){
-    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_socmed,data_channel_is_tech,data_channel_is_world) )
-    new_data <- filter(new_data, data_channel_is_bus == 1)
-   }
-   if(channel_of_interest=="Social_Media"){
-    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_bus,data_channel_is_tech,data_channel_is_world) )
-    new_data <- filter(new_data, data_channel_is_socmed == 1)
-   }
-   if(channel_of_interest=="Tech"){
-    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_bus,data_channel_is_socmed,data_channel_is_world) )
-    new_data <- filter(new_data, data_channel_is_tech == 1)
-   }
-   if(channel_of_interest=="World"){
-    new_data = subset(data, select = -c(data_channel_is_lifestyle,data_channel_is_entertainment,data_channel_is_bus,data_channel_is_socmed,data_channel_is_tech) )
-    new_data <- filter(new_data, data_channel_is_world == 1)
-  }
-  return(new_data)
-}
-
-channel_data <- subset_data(channel)
-head(channel_data)
-
-# Lifestyle_data <- subset_data(channel_of_interest="Lifestyle")
-# head(Lifestyle_data)
-# dim(Lifestyle_data)
-# 
-# Entertainment_data <- subset_data(channel_of_interest="Entertainment")
-# head(Entertainment_data)
-# dim(Entertainment_data)
-# 
-# Business_data <- subset_data(channel_of_interest="Business")
-# head(Business_data)
-# dim(Business_data)
-# 
-# Social_Media_data <- subset_data(channel_of_interest="Social_Media")
-# head(Social_Media_data)
-# dim(Social_Media_data)
-# 
-# Tech_data <- subset_data(channel_of_interest="Tech")
-# head(Tech_data)
-# dim(Tech_data)
-# 
-# World_data <- subset_data(channel_of_interest="World")
-# head(World_data)
-# dim(World_data)
->>>>>>> 31deafe31301d3ed4f29a98daff0e1bcf89d37e3
 
 # show the data frame
 df
