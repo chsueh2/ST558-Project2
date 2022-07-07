@@ -27,6 +27,17 @@ knitr::opts_chunk$set(fig.path = "./images/")
 
 ## Start here...
 
+```{r render, eval = FALSE}
+#this is the code I used to render this document before I committed changes to the repository
+rmarkdown::render("part 1 - introduction.Rmd",
+                  output_format = "github_document",
+                  output_options = list(
+                    toc = TRUE,
+                    html_preview=FALSE) 
+)
+
+```
+
 BK (7-5-2022): I'm going to keep the instructions below.
 
 Let's say you're interested in entertainment news and you would like to predict the number shares based on different criteria. Luckily, this repository is here to help. This will help you learn about our data set, make predictions, and create automated Markdown reports. First, let's look at the data:
