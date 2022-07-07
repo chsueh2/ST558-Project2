@@ -11,7 +11,7 @@
 
 <meta name="author" content="Bridget Knapp and Chien-Lan Hsueh" />
 
-<meta name="date" content="2022-07-05" />
+<meta name="date" content="2022-07-06" />
 
 <title>ST558 Porject 1: Part 1</title>
 
@@ -1582,6 +1582,96 @@ window.initializeSourceEmbed = function(filename) {
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -1736,7 +1826,7 @@ pre code {
 
 <h1 class="title toc-ignore">ST558 Porject 1: Part 1</h1>
 <h4 class="author">Bridget Knapp and Chien-Lan Hsueh</h4>
-<h4 class="date">2022-07-05</h4>
+<h4 class="date">2022-07-06</h4>
 
 </div>
 
@@ -1757,7 +1847,19 @@ model the response. You’ll describe those in more detail later.</p>
 </div>
 <div id="start-here" class="section level2">
 <h2>Start here…</h2>
-<p>BK (7-5-2022): I’m going to keep the instructions below.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjpbIiN0aGlzIGlzIHRoZSBjb2RlIEkgdXNlZCB0byByZW5kZXIgdGhpcyBkb2N1bWVudCBiZWZvcmUgSSBjb21taXR0ZWQgY2hhbmdlcyB0byB0aGUgcmVwb3NpdG9yeSIsInJtYXJrZG93bjo6cmVuZGVyKFwicGFydCAxIC0gaW50cm9kdWN0aW9uLlJtZFwiLCIsIiAgICAgICAgICAgICAgICAgIG91dHB1dF9mb3JtYXQgPSBcImdpdGh1Yl9kb2N1bWVudFwiLCIsIiAgICAgICAgICAgICAgICAgIG91dHB1dF9vcHRpb25zID0gbGlzdCgiLCIgICAgICAgICAgICAgICAgICAgIHRvYyA9IFRSVUUsIiwiICAgICAgICAgICAgICAgICAgICBodG1sX3ByZXZpZXc9RkFMU0UpICIsIikiXX0= -->
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#this is the code I used to render this document before I committed changes to the repository</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&quot;part 1 - introduction.Rmd&quot;</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">output_format =</span> <span class="st">&quot;github_document&quot;</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">output_options =</span> <span class="fu">list</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">toc =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">html_preview=</span><span class="cn">FALSE</span>) </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <p>Let’s say you’re interested in entertainment news and you would like
 to predict the number shares based on different criteria. Luckily, this
 repository is here to help. This will help you learn about our data set,
@@ -1765,16 +1867,32 @@ make predictions, and create automated Markdown reports. First, let’s
 look at the data:</p>
 <p>We want to predict the number of <code>shares</code> a certain type
 of news receives. The news type is described in the
-<code>data_channel_is_*</code> columns. There are four types: Lifestyle,
+<code>data_channel_is_*</code> columns. There are six types: Lifestyle,
 Entertainment, Business, Social Media, Tech, and World. The data also
 includes columns for the day of the week the article was published
 (<code>weekday_is_*</code>), the best, worst, and average keywords based
 on number of shares (<code>kw_*</code>); and negative or positive
 popularity (<code>*_polarity</code>).</p>
+<p>To predict the number of ‘shares’, we will use a linear regression
+model and an ensemble tree-based model. In a linear regression model,
+the response for the <em>i<sup>th</sup></em> observation (Y<sub>i</sub>)
+is calculated by using an explanatory variable for the
+<em>i<sup>th</sup></em> observation (x<sub>i</sub>) to calculate the
+y-intercept (B<sub>0</sub>), slope (B<sub>1</sub>), and error
+(E<sub>i</sub>):</p>
+<p>Y<sub>i</sub> = B<sub>0</sub> + B<sub>1</sub> x<sub>i</sub> +
+E<sub>i</sub></p>
+<p>An ensemble tree-based model takes the average across many trees.
+Here, we’ll use a random forest model, which creates many trees from
+bootstrap samples. Bootstrapping is the process of taking many samples
+from our data, calulating a statistic for each sample, and then
+averaging the results. We’ll also use a boosted tree model, which
+creates many trees based on the residuals (observed-predicted) of the
+previous set (the user specifies how many times this is repeated).</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNUNTU4IFBvcmplY3QgMTogUGFydCAxIg0KYXV0aG9yOiAiQnJpZGdldCBLbmFwcCBhbmQgQ2hpZW4tTGFuIEhzdWVoIg0KaW5zdGl0dXRlOiBPbmxpbmUgU3RhdGlzdGljcyBNYXN0ZXIgUHJvZ3JhbSwgTkNTVQ0KZGF0ZTogImByIFN5cy5EYXRlKClgIg0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIGNvZGVfZm9sZGluZzogbm9uZQ0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZmlnLnBhdGggPSAiLi9pbWFnZXMvIikNCmBgYA0KDQoNCiMjIEludHJvZHVjdGlvbiBTZWN0aW9uDQoNCj4gWW91IHNob3VsZCBoYXZlIGFuIGludHJvZHVjdGlvbiBzZWN0aW9uIHRoYXQgYnJpZWZseSBkZXNjcmliZXMgdGhlIGRhdGEgYW5kIHRoZSB2YXJpYWJsZXMgeW91IGhhdmUgdG8gd29yayB3aXRoIChqdXN0IGRpc2N1c3MgdGhlIG9uZXMgeW91IHdhbnQgdG8gdXNlKS4gWW91ciB0YXJnZXQgdmFyaWFibGVzIGlzIHRoZSBzaGFyZXMgdmFyaWFibGUuIFlvdSBzaG91bGQgYWxzbyBtZW50aW9uIHRoZSBwdXJwb3NlIG9mIHlvdXIgYW5hbHlzaXMgYW5kIHRoZSBtZXRob2RzIHlvdeKAmWxsIHVzZSB0byBtb2RlbCB0aGUgcmVzcG9uc2UuIFlvdeKAmWxsIGRlc2NyaWJlIHRob3NlIGluIG1vcmUgZGV0YWlsIGxhdGVyLiANCj4NCj4gVGhpcyBzZWN0aW9uIHNob3VsZCBiZSBkb25lIGJ5IHRoZSDigJhzZWNvbmTigJkgZ3JvdXAgbWVtYmVyLiANCg0KDQoNCiMjIFN0YXJ0IGhlcmUuLi4NCg0KQksgKDctNS0yMDIyKTogSSdtIGdvaW5nIHRvIGtlZXAgdGhlIGluc3RydWN0aW9ucyBiZWxvdy4NCg0KTGV0J3Mgc2F5IHlvdSdyZSBpbnRlcmVzdGVkIGluIGVudGVydGFpbm1lbnQgbmV3cyBhbmQgeW91IHdvdWxkIGxpa2UgdG8gcHJlZGljdCB0aGUgbnVtYmVyIHNoYXJlcyBiYXNlZCBvbiBkaWZmZXJlbnQgY3JpdGVyaWEuIEx1Y2tpbHksIHRoaXMgcmVwb3NpdG9yeSBpcyBoZXJlIHRvIGhlbHAuIFRoaXMgd2lsbCBoZWxwIHlvdSBsZWFybiBhYm91dCBvdXIgZGF0YSBzZXQsIG1ha2UgcHJlZGljdGlvbnMsIGFuZCBjcmVhdGUgYXV0b21hdGVkIE1hcmtkb3duIHJlcG9ydHMuIEZpcnN0LCBsZXQncyBsb29rIGF0IHRoZSBkYXRhOg0KDQpXZSB3YW50IHRvIHByZWRpY3QgdGhlIG51bWJlciBvZiBgc2hhcmVzYCBhIGNlcnRhaW4gdHlwZSBvZiBuZXdzIHJlY2VpdmVzLiBUaGUgbmV3cyB0eXBlIGlzIGRlc2NyaWJlZCBpbiB0aGUgYGRhdGFfY2hhbm5lbF9pc18qYCBjb2x1bW5zLiBUaGVyZSBhcmUgZm91ciB0eXBlczogTGlmZXN0eWxlLCBFbnRlcnRhaW5tZW50LCBCdXNpbmVzcywgU29jaWFsIE1lZGlhLCBUZWNoLCBhbmQgV29ybGQuIFRoZSBkYXRhIGFsc28gaW5jbHVkZXMgY29sdW1ucyBmb3IgdGhlIGRheSBvZiB0aGUgd2VlayB0aGUgYXJ0aWNsZSB3YXMgcHVibGlzaGVkIChgd2Vla2RheV9pc18qYCksIHRoZSBiZXN0LCB3b3JzdCwgYW5kIGF2ZXJhZ2Uga2V5d29yZHMgYmFzZWQgb24gbnVtYmVyIG9mIHNoYXJlcyAoYGt3XypgKTsgYW5kIG5lZ2F0aXZlIG9yIHBvc2l0aXZlIHBvcHVsYXJpdHkgKGAqX3BvbGFyaXR5YCkuDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNUNTU4IFBvcmplY3QgMTogUGFydCAxIg0KYXV0aG9yOiAiQnJpZGdldCBLbmFwcCBhbmQgQ2hpZW4tTGFuIEhzdWVoIg0KaW5zdGl0dXRlOiBPbmxpbmUgU3RhdGlzdGljcyBNYXN0ZXIgUHJvZ3JhbSwgTkNTVQ0KZGF0ZTogImByIFN5cy5EYXRlKClgIg0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIGNvZGVfZm9sZGluZzogbm9uZQ0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZmlnLnBhdGggPSAiLi9pbWFnZXMvIikNCmBgYA0KDQoNCiMjIEludHJvZHVjdGlvbiBTZWN0aW9uDQoNCj4gWW91IHNob3VsZCBoYXZlIGFuIGludHJvZHVjdGlvbiBzZWN0aW9uIHRoYXQgYnJpZWZseSBkZXNjcmliZXMgdGhlIGRhdGEgYW5kIHRoZSB2YXJpYWJsZXMgeW91IGhhdmUgdG8gd29yayB3aXRoIChqdXN0IGRpc2N1c3MgdGhlIG9uZXMgeW91IHdhbnQgdG8gdXNlKS4gWW91ciB0YXJnZXQgdmFyaWFibGVzIGlzIHRoZSBzaGFyZXMgdmFyaWFibGUuIFlvdSBzaG91bGQgYWxzbyBtZW50aW9uIHRoZSBwdXJwb3NlIG9mIHlvdXIgYW5hbHlzaXMgYW5kIHRoZSBtZXRob2RzIHlvdeKAmWxsIHVzZSB0byBtb2RlbCB0aGUgcmVzcG9uc2UuIFlvdeKAmWxsIGRlc2NyaWJlIHRob3NlIGluIG1vcmUgZGV0YWlsIGxhdGVyLiANCj4NCj4gVGhpcyBzZWN0aW9uIHNob3VsZCBiZSBkb25lIGJ5IHRoZSDigJhzZWNvbmTigJkgZ3JvdXAgbWVtYmVyLiANCg0KDQoNCiMjIFN0YXJ0IGhlcmUuLi4NCg0KYGBge3IgcmVuZGVyLCBldmFsID0gRkFMU0V9DQojdGhpcyBpcyB0aGUgY29kZSBJIHVzZWQgdG8gcmVuZGVyIHRoaXMgZG9jdW1lbnQgYmVmb3JlIEkgY29tbWl0dGVkIGNoYW5nZXMgdG8gdGhlIHJlcG9zaXRvcnkNCnJtYXJrZG93bjo6cmVuZGVyKCJwYXJ0IDEgLSBpbnRyb2R1Y3Rpb24uUm1kIiwNCiAgICAgICAgICAgICAgICAgIG91dHB1dF9mb3JtYXQgPSAiZ2l0aHViX2RvY3VtZW50IiwNCiAgICAgICAgICAgICAgICAgIG91dHB1dF9vcHRpb25zID0gbGlzdCgNCiAgICAgICAgICAgICAgICAgICAgdG9jID0gVFJVRSwNCiAgICAgICAgICAgICAgICAgICAgaHRtbF9wcmV2aWV3PUZBTFNFKSANCikNCg0KYGBgDQoNCkxldCdzIHNheSB5b3UncmUgaW50ZXJlc3RlZCBpbiBlbnRlcnRhaW5tZW50IG5ld3MgYW5kIHlvdSB3b3VsZCBsaWtlIHRvIHByZWRpY3QgdGhlIG51bWJlciBzaGFyZXMgYmFzZWQgb24gZGlmZmVyZW50IGNyaXRlcmlhLiBMdWNraWx5LCB0aGlzIHJlcG9zaXRvcnkgaXMgaGVyZSB0byBoZWxwLiBUaGlzIHdpbGwgaGVscCB5b3UgbGVhcm4gYWJvdXQgb3VyIGRhdGEgc2V0LCBtYWtlIHByZWRpY3Rpb25zLCBhbmQgY3JlYXRlIGF1dG9tYXRlZCBNYXJrZG93biByZXBvcnRzLiBGaXJzdCwgbGV0J3MgbG9vayBhdCB0aGUgZGF0YToNCg0KV2Ugd2FudCB0byBwcmVkaWN0IHRoZSBudW1iZXIgb2YgYHNoYXJlc2AgYSBjZXJ0YWluIHR5cGUgb2YgbmV3cyByZWNlaXZlcy4gVGhlIG5ld3MgdHlwZSBpcyBkZXNjcmliZWQgaW4gdGhlIGBkYXRhX2NoYW5uZWxfaXNfKmAgY29sdW1ucy4gVGhlcmUgYXJlIHNpeCB0eXBlczogTGlmZXN0eWxlLCBFbnRlcnRhaW5tZW50LCBCdXNpbmVzcywgU29jaWFsIE1lZGlhLCBUZWNoLCBhbmQgV29ybGQuIFRoZSBkYXRhIGFsc28gaW5jbHVkZXMgY29sdW1ucyBmb3IgdGhlIGRheSBvZiB0aGUgd2VlayB0aGUgYXJ0aWNsZSB3YXMgcHVibGlzaGVkIChgd2Vla2RheV9pc18qYCksIHRoZSBiZXN0LCB3b3JzdCwgYW5kIGF2ZXJhZ2Uga2V5d29yZHMgYmFzZWQgb24gbnVtYmVyIG9mIHNoYXJlcyAoYGt3XypgKTsgYW5kIG5lZ2F0aXZlIG9yIHBvc2l0aXZlIHBvcHVsYXJpdHkgKGAqX3BvbGFyaXR5YCkuDQoNClRvIHByZWRpY3QgdGhlIG51bWJlciBvZiAnc2hhcmVzJywgd2Ugd2lsbCB1c2UgYSBsaW5lYXIgcmVncmVzc2lvbiBtb2RlbCBhbmQgYW4gZW5zZW1ibGUgdHJlZS1iYXNlZCBtb2RlbC4gSW4gYSBsaW5lYXIgcmVncmVzc2lvbiBtb2RlbCwgdGhlIHJlc3BvbnNlIGZvciB0aGUgX2ledGheXyBvYnNlcnZhdGlvbiAoWX5pfikgaXMgY2FsY3VsYXRlZCBieSB1c2luZyBhbiBleHBsYW5hdG9yeSB2YXJpYWJsZSBmb3IgdGhlIF9pXnRoXl8gb2JzZXJ2YXRpb24gKHh+aX4pIHRvIGNhbGN1bGF0ZSB0aGUgeS1pbnRlcmNlcHQgKEJ+MH4pLCBzbG9wZSAoQn4xfiksIGFuZCBlcnJvciAoRX5pfik6DQoNCll+aX4gPSBCfjB+ICsgQn4xfiB4fml+ICsgRX5pfg0KDQpBbiBlbnNlbWJsZSB0cmVlLWJhc2VkIG1vZGVsIHRha2VzIHRoZSBhdmVyYWdlIGFjcm9zcyBtYW55IHRyZWVzLiBIZXJlLCB3ZSdsbCB1c2UgYSByYW5kb20gZm9yZXN0IG1vZGVsLCB3aGljaCBjcmVhdGVzIG1hbnkgdHJlZXMgZnJvbSBib290c3RyYXAgc2FtcGxlcy4gQm9vdHN0cmFwcGluZyBpcyB0aGUgcHJvY2VzcyBvZiB0YWtpbmcgbWFueSBzYW1wbGVzIGZyb20gb3VyIGRhdGEsIGNhbHVsYXRpbmcgYSBzdGF0aXN0aWMgZm9yIGVhY2ggc2FtcGxlLCBhbmQgdGhlbiBhdmVyYWdpbmcgdGhlIHJlc3VsdHMuIFdlJ2xsIGFsc28gdXNlIGEgYm9vc3RlZCB0cmVlIG1vZGVsLCB3aGljaCBjcmVhdGVzIG1hbnkgdHJlZXMgYmFzZWQgb24gdGhlIHJlc2lkdWFscyAob2JzZXJ2ZWQtcHJlZGljdGVkKSBvZiB0aGUgcHJldmlvdXMgc2V0ICh0aGUgdXNlciBzcGVjaWZpZXMgaG93IG1hbnkgdGltZXMgdGhpcyBpcyByZXBlYXRlZCkuDQo=</div>
 
 
 
