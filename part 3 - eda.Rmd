@@ -57,7 +57,16 @@ df_test_x <- df_test %>% filter(channel == channel)
 ```
 
 
+```{r 7:31_7_7_2022}
+A <- df_train_x %>%
+  select(kw_avg_max,shares)
 
+g <- ggplot(A, aes(x = kw_avg_max))
+g + geom_histogram(color = "blue", fill = "red",
+size = 2, binwidth = 30) +
+  labs(x = "Best Keyword (Average Number of Shares)", title = "Distribution of Shares by Best Keyword", y="Number of Shares")
+
+```
 
 
 ```{r}
