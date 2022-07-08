@@ -125,6 +125,17 @@ g + geom_density(adjust = 0.5, alpha = 0.5, aes(fill = is_weekend))
 
 ```
 ```{r 6:28_7_8_2022}
+
+df <- data.frame(index=1:nrow(df_train_x),
+                 var1=df_train_x$LDA_00,
+                 var2=df_train_x$LDA_01,
+                 var3=df_train_x$LDA_02,
+                 var4=df_train_x$LDA_03,
+                 var5=df_train_x$LDA_04)
+df <- melt(df ,  id.vars = 'index', variable.name = 'series')
+colnames(df)
+ ggplot(df, aes(index, value)) +
+   geom_line()
 # g <- ggplot(df_train_x, aes(x = shares, y = n_tokens_content,group=n_tokens_title,fill=shares))
 # g + geom_boxplot(fill = "grey") +
 #   labs(x = "Number of Shares", title = "Distribution of Shares Grouped by Number of Words in Article", y="Number of Words in the Article")
