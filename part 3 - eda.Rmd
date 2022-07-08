@@ -141,6 +141,15 @@ colnames(df)
 #   labs(x = "Number of Shares", title = "Distribution of Shares Grouped by Number of Words in Article", y="Number of Words in the Article")
 ```
 
+```{r 7:01_7_8_2022}
+g<-ggplot(data = df_train_x, aes(x = weekday))
+g + geom_bar() +
+  labs(x = "Day of the Week the Article was Published", title = "Number of Articles Published Throughout the Week", y="Number of Articles Published")
+# g <- ggplot(df_train_x, aes(x = weekday, y = shares))
+# g + geom_boxplot(fill = "grey")
+
+```
+
 
 ```{r}
 # quick summaries of numeric and categorical variables
