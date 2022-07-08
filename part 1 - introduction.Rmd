@@ -38,6 +38,26 @@ rmarkdown::render("part 1 - introduction.Rmd",
 
 ```
 
+# About the Data
+
+We are going to get our data from the UCI Machine Learning Repository. Essentially, it’s a website with over 600 data sets for people to practice coding and machine learning. We are going to use the Online News Popularity Data Set, which summarizes a variety of aspects about articles published by Mashable, an American news website, over the course of two years. Some of the aspects include:
+
++ Number of words in the title and in the content
++ Number of links, images, and videos
++ Type, or channel, of news (Lifestyle, Entertainment, Business, Social Media, Tech, or World)
++ Minimum, maximum, and average number of shares for the worst, best, and average keyword 
++ When the article was published (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, or a weekend)?
++ Minimum, maximum, and average polarity of positive and negative words in the article
+
+We will ignore the URL of the article and the number of days between the article publication and the dataset acquisition because they are non-predictive.
+
+
+
+
+
+
+
+
 Let's say you're interested in entertainment news and you would like to predict the number shares based on different criteria. Luckily, this repository is here to help. This will help you learn about our data set, make predictions, and create automated Markdown reports. First, let's look at the data:
 
 We want to predict the number of `shares` a certain type of news receives. The news type is described in the `data_channel_is_*` columns. There are six types: Lifestyle, Entertainment, Business, Social Media, Tech, and World. The data also includes columns for the day of the week the article was published (`weekday_is_*`), the best, worst, and average keywords based on number of shares (`kw_*`); and negative or positive popularity (`*_polarity`).
