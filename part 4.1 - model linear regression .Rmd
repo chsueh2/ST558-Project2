@@ -40,7 +40,7 @@ knitr::knit("part 2 - data.Rmd", output = tempfile())
 
 # Linear Model: Definition
 
-To predict the number of 'shares', we will use a linear regression model and an ensemble tree-based model. In a linear regression model, the response for the _i^th^_ observation (Y~i~) is calculated by using an explanatory variable for the _i^th^_ observation (x~i~) to calculate the y-intercept (B~0~), slope (B~1~), and error (E~i~):
+To predict the number of 'shares' based on certain aspects, we will use a linear regression model. In a linear regression model, the response for the _i^th^_ observation (Y~i~) is calculated by using an explanatory variable for the _i^th^_ observation (x~i~) to calculate the y-intercept (B~0~), slope (B~1~), and error (E~i~): Y~i~ = B~0~ + B~1~ x~i~ + E~i~
 
-Y~i~ = B~0~ + B~1~ x~i~ + E~i~
+Simple linear regression has one explanatory variable and multiple linear regression has more than one explanatory variable. Linear regression models are fitted using by minimizing the sum of squared residuals.
 
