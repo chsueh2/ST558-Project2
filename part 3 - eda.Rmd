@@ -56,6 +56,11 @@ df_train_x <- df_train %>% filter(channel == channel)
 df_test_x <- df_test %>% filter(channel == channel)
 ```
 
+```{r 8:29_7_7_2022}
+#A summary table showing the sample size (N), mean, standard deviation (Std. Dev.), minimum (Min), 25th percentile, 75th percentile, and maximum (Max)
+library(vtable)
+st(df_train_x)
+```
 
 ```{r 7:31_7_7_2022}
 A <- df_train_x %>%
@@ -65,8 +70,24 @@ g <- ggplot(A, aes(x = kw_avg_max))
 g + geom_histogram(color = "blue", fill = "red",
 size = 2, binwidth = 30) +
   labs(x = "Best Keyword (Average Number of Shares)", title = "Distribution of Shares by Best Keyword", y="Number of Shares")
-
 ```
+
+```{r 8:10_7_7_2022}
+#we need to be able to cycle through the channels
+#maybe something like this: A <- df_train_x %>% filter(channel==channel)
+A <- df_train_x %>% filter(channel=="lifestyle") 
+
+A <- dplyr::select_if(A, is.numeric)
+
+r <- cor(A, use="complete.obs")
+library(ggplot2)
+library(ggcorrplot)
+ggcorrplot(r, 
+            hc.order = TRUE, 
+            type = "lower",
+            tl.cex = 6)
+```
+
 
 
 ```{r}
@@ -77,7 +98,7 @@ skim(df_train_x)
 
 
 ```{r}
-mean(df_train_x$shares)
+#mean(df_train_x$shares)
 ```
 
 
