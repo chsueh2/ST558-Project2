@@ -35,3 +35,7 @@ knitr::knit("part 2 - data.Rmd", output = tempfile())
 ```
 
 ## Start here...
+
+# Random Forest: Definition
+
+Before we jump into random forests, lets define bootstrapping. Bootstrapping allows the user to create multiple random samples from one data set and apply some sort of method (like a standard error or a confidence interval). This is repeated many times so that we can get an idea of what the method does over several data sets. In a random forest, we will use bootstrapping to make many trees from multiple random samples of our data. We will then average the results using a random subset of predictors for each tree. 
