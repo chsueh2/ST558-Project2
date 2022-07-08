@@ -88,6 +88,23 @@ ggcorrplot(r,
             tl.cex = 6)
 ```
 
+```{r 5:40_7_8_2022}
+
+avg_positive_polarity_Sum <- df_train_x %>% group_by(avg_positive_polarity) %>% summarize(prop_avg_positive_polarity = mean(shares),n = n())
+avg_positive_polarity_Sum
+
+ggplot(avg_positive_polarity_Sum, aes(x=avg_positive_polarity,y=prop_avg_positive_polarity,size=n)) + geom_point(stat="identity") +
+  labs(x = "Average Polarity of Positive words", title = "Average Polarity of Positive words",y="Proportion of Average Polarity of Positive words")
+
+```
+
+```{r 5:58_7_8_2022}
+
+
+
+
+```
+
 
 
 ```{r}
