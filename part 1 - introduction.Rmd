@@ -51,6 +51,10 @@ We are going to get our data from the UCI Machine Learning Repository. Essential
 
 We will ignore the URL of the article and the number of days between the article publication and the dataset acquisition because they are non-predictive.
 
+# What We Are Going to Do
+
+The purpose of this repository is to automatically generate reports for each channel of news that summarize the data and to predict the number of shares based on chosen aspects of interest. To make our predictions, we will split the data up into a training and a test set and, using the training set, make a linear regression model and an ensemble tree-based model, specifically a random forest model and a boosted tree model.
+
 
 
 
