@@ -10,8 +10,6 @@ output:
     code_folding: none
   html_document:
     df_print: paged
-params:
-  channel: "lifestyle"
 ---
 
 ```{r include=FALSE}
@@ -79,7 +77,7 @@ fit_model <- function(
     preProcess = c("center", "scale"),
     trControl = trainControl(), 
     tuneGrid = NULL, 
-    plot = T, ... ){
+    plot = FALSE, ... ){
   
   # timer - start
   proc_timer <- proc.time()
@@ -159,7 +157,6 @@ plot_modelinfo <- function(fit){
 
 
 ## Data
-
 
 The data file is saved in the `data` folder. After reading the raw data, we first check what variables it contains and if there is any missing or NA data.
 
