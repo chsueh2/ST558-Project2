@@ -38,4 +38,5 @@ knitr::knit("part 2 - data.Rmd", output = tempfile())
 
 # Boosted Tree: Definition
 
-Tree based methods allow the user to split up the predictor space(s) into different regions and then make predictions based off those regions.
+Tree based methods allow the user to split up the predictor space(s) into different regions and then make predictions based off those regions. A boosted tree model, which creates many trees based on the residuals (observed-predicted) of the previous set (the user specifies how many times this is repeated).
+
