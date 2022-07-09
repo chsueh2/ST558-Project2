@@ -157,6 +157,32 @@ summary(other_df_train_x)
 
 ```
 
+Next, we will make some contingency tables. The first one counts the number of articles that were published on a certain day of the week for each channel (again, if only one channel is selected, you will only see data for that channel). The second one counts the number of articles published on the weekend and not published on the weekend for each channel.
+
+```{r 9:53_7_8_2022}
+table(other_df_train_x$channel, other_df_train_x$weekday)
+
+table(other_df_train_x$channel, other_df_train_x$is_weekend)
+```
+
+Below is a boxplot showing the number of shares for each weekday. It will help us understand if there are certain days of the week where articles get more or less shares.
+
+```{r 10:00_7_8_2022}
+
+other_df_train_x <- df_train_x
+
+other_df_train_x = subset(other_df_train_x, select = c(channel,weekday,is_weekend,shares))
+
+other_df_train_x %>% ggplot(aes(weekday, shares)) +
+geom_boxplot() +
+geom_jitter(width = 0.05) +
+labs(
+  title = paste0("Boxplots: Distribution of Shares in ",A," for Each Weekday"),
+  x = "Weekday"
+)
+
+```
+
 
 
 ```{r 8:29_7_7_2022}
