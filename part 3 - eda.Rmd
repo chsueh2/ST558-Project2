@@ -10,6 +10,8 @@ output:
     code_folding: none
   html_document:
     df_print: paged
+params:
+  channel: "lifestyle"
 ---
 
 ```{r include=FALSE}
@@ -18,16 +20,6 @@ knitr::opts_chunk$set(fig.path = "./images/")
 
 
 ## Summarizations
-
-> You should produce some basic (but meaningful) summary statistics and plots about the training data you
-are working with (especially as it relates to your response).
->
-> As you will automate this same analysis across other data, you can’t describe the trends you see in the graph (unless you want to try to automate that!). You should describe what to look for in the summary statistics/plots to help the reader understand the summary or graph. Ex: A scatter plot with the number of shares on the y-axis and the positive word rate on the x-axis is created:
->
-> 'We can inspect the trend of shares as a function of the positive word rate. If the points show an upward trend, then articles with more positive words tend to be shared more often. If we see a negative trend then articles with more positive words tend to be shared less often.'
->
-> Each group member is responsible for producing some summary statistics (means, sds, contingency tables, etc.) and for producing at least three graphs (each) of the data.
-
 
 "part 2 - data.Rmd"
 
@@ -38,7 +30,7 @@ knitr::knit("part 2 - data.Rmd", output = tempfile())
 
 
 
-## Start here...
+
 
 ```{r}
 # check balance - compare ecdf of train and test sets
@@ -48,15 +40,10 @@ plot(ecdf(df_test$shares), col = "red", add = T)
 
 
 ```{r}
-#I use A in titles to denote the channel type.
-table(df_train$channel)
-A<- "lifestyle"
-#channel <- "lifestyle"          
-
 # subset by channel
-df_train_x <- df_train %>% filter(channel == A)
+df_train_x <- df_train %>% filter(channel == params$channel)
 df_train_x
-df_test_x <- df_test %>% filter(channel == A)
+df_test_x <- df_test %>% filter(channel == params$channel)
 ```
 
 # Exploratory Data Analysis
@@ -79,12 +66,17 @@ summary(df_train_x$shares)
 Next, lets plot a histogram of the `shares` data so that we can visually see it's distribution. For example, we can determine if the distribution of `shares` is symmetric, skewed left, or skewed right.
 
 ```{r 8:21_7_8_2022}
-n=nrow(df_train_x)
-K = round(1 + 3.322 * log10(n),digits = 0) #find best number of bins using Sturge’s Rule
-g <- ggplot(df_train_x, aes(x = shares))
-g + geom_histogram(bins=K) +
-  labs(title = paste0("Histogram: Distribution of Shares for ",A),y="Frequency",x="Shares")
+df_train_x %>% 
+  ggplot(aes(x = shares)) + 
+  geom_histogram() +
+  labs(
+    title = paste0("Histogram: Distribution of Shares for ", params$channel),
+    y="Frequency",
+    x="Shares")
 ```
+
+
+
 
 Now, let's make a one-way contingency table to look at the total number of articles for every quantity of shares. We will be able to see if there were a lot of articles with a small number of shares or if there were a lot of articles with a large number of shares. 
 
@@ -152,22 +144,36 @@ ggcorrplot(r,
            title = paste0("Correlation Plot for ",A))
 ```
 
-Now, lets look at the three variables we left out: `channel`,`weekday`,`is_weekend`. We will start by making a summary table showing how many articles (or observations) where found for each channel (if the data set is sorted for a particular channel, you should only see counts for that channel), weekday, and the number of articles that were published during the weekend.
+Now, lets look at the three variables we left out: `weekday`,`is_weekend`. We will start by making a summary table showing how many articles (or observations) where found for each channel (if the data set is sorted for a particular channel, you should only see counts for that channel), weekday, and the number of articles that were published during the weekend.
 
 ```{r 9:47_7_8_2022}
-other_df_train_x <- df_train_x
+#other_df_train_x <- df_train_x
 
-other_df_train_x = subset(other_df_train_x, select = c(channel,weekday,is_weekend))
+#other_df_train_x = subset(other_df_train_x, select = c(channel,weekday,is_weekend))
 
-summary(other_df_train_x)
+#summary(other_df_train_x)
+
+df_train_x %>% 
+  select(weekday, is_weekend) %>% 
+  summary()
+
+
+Print("From the count table, we foud that for the categorical vairable `is_weekend`, ")
+if (df_test_x[df_test_x$is_weekend == "N"] / nrow(df_test_x) > 0.5 ) {
+  print("there are more weekday data than weekend data.")
+} else {
+  print("there are more weekend data than weekday data.")
+}
+
 
 ```
+From the count table, we see there are more records in the category `r `
+
+
 
 Next, we will make some contingency tables. The first one counts the number of articles that were published on a certain day of the week for each channel (again, if only one channel is selected, you will only see data for that channel). The second one counts the number of articles published on the weekend and not published on the weekend for each channel.
 
 ```{r 9:53_7_8_2022}
-table(other_df_train_x$channel, other_df_train_x$weekday)
-
 table(other_df_train_x$channel, other_df_train_x$is_weekend)
 ```
 
