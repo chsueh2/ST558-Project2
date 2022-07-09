@@ -78,11 +78,7 @@ df_train_x %>%
 
 
 
-Now, let's make a one-way contingency table to look at the total number of articles for every quantity of shares. We will be able to see if there were a lot of articles with a small number of shares or if there were a lot of articles with a large number of shares. 
 
-```{r 8:40_7_8_2022}
-table(df_train_x$shares)
-```
 
 Next, we'll create a box plot. Before we do that, let's make a binary version of the `shares` data. Using the mean of the `shares` data, we will give entries with a number of shares >= the mean a 1 and the rest a 0. This plot will show if the majority of shares is greater than or less than the mean of the shares. If it's larger than the mean, the box plot over the 1 should be larger and more spread out than the one over the 0.
 
@@ -122,7 +118,7 @@ We can also visually inspect the distribution of each variable by making a histo
 
 ```{r 9:18_7_8_2022}
 library(Hmisc)
-hist.data.frame(summary_df_train_x,mtitl=paste0("Histograms for all Numeric Variabes in ",A))
+hist.data.frame(summary_df_train_x,mtitl=paste0("Histograms for all Numeric Variabes in ",params$channel))
 ```
 
 Now, we will make a correlation plot comparing all of our numeric variables. When we do our modeling, we're looking for correlations that are greater than 0.75 and less than -0.75. In the plot below, we are looking for the bright red and bright blue sections.
@@ -169,14 +165,6 @@ if (df_test_x[df_test_x$is_weekend == "N"] / nrow(df_test_x) > 0.5 ) {
 ```
 From the count table, we see there are more records in the category `r `
 
-
-
-Next, we will make some contingency tables. The first one counts the number of articles that were published on a certain day of the week for each channel (again, if only one channel is selected, you will only see data for that channel). The second one counts the number of articles published on the weekend and not published on the weekend for each channel.
-
-```{r 9:53_7_8_2022}
-table(other_df_train_x$channel, other_df_train_x$is_weekend)
-```
-
 Below is a boxplot showing the number of shares for each weekday. It will help us understand if there are certain days of the week where articles get more or less shares.
 
 ```{r 10:00_7_8_2022}
@@ -184,11 +172,15 @@ other_df_train_x <- df_train_x
 
 other_df_train_x = subset(other_df_train_x, select = c(channel,weekday,is_weekend,shares))
 
+# scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+#               labels = trans_format("log10", math_format(10^.x))) +
+
+
 other_df_train_x %>% ggplot(aes(weekday, shares)) +
 geom_boxplot() +
 geom_jitter(width = 0.05) +
 labs(
-  title = paste0("Boxplots: Distribution of Shares in ",A," for Each Weekday"),
+  title = paste0("Boxplots: Distribution of Shares in ",params$channel," for Each Weekday"),
   x = "Weekday"
 )
 ```
