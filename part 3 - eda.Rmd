@@ -48,6 +48,7 @@ plot(ecdf(df_test$shares), col = "red", add = T)
 
 
 ```{r}
+#I use A in titles to denote the channel type.
 table(df_train$channel)
 A<- "lifestyle"
 #channel <- "lifestyle"          
@@ -67,14 +68,14 @@ nrow(df_train_x)
 summary(df_train_x$shares)
 ```
 
-Next, lets plot a histogram of the `shares` data so that we can visually see it's distribution. For example, we can determine if the distribution or `shares` is symmetric, skewed left, or right.
+Next, lets plot a histogram of the `shares` data so that we can visually see it's distribution. For example, we can determine if the distribution or `shares` is symmetric, skewed left, or skewed right.
 
 ```{r 8:21_7_8_2022}
 n=nrow(df_train_x)
 K = round(1 + 3.322 * log10(n),digits = 0) #find best number of bins using Sturge’s Rule
 g <- ggplot(df_train_x, aes(x = shares))
 g + geom_histogram(bins=K) +
-  labs(title = "Histogram: Distribution of Shares",y="Frequency",x="Shares")
+  labs(title = paste0("Histogram: Distribution of Shares for ",A),y="Frequency",x="Shares")
 ```
 
 Now, let's make a one-way contingency table to look at the total number of articles for every quantity of shares. We will be able to see if there were a lot of articles with a small number of shares or if there were a lot of articles with a large number of shares. 
@@ -104,7 +105,9 @@ boxplot_data_df_train_x %>% select(binary_shares, shares, everything())
 
 g <- ggplot(boxplot_data_df_train_x, aes(x = factor(binary_shares), y = shares))
 g + geom_boxplot(fill = "grey") +
-  labs(x="Number of Shares >= Mean (0=no,1=yes)",title="Boxplot: Are the Number of Shares Greater than the Mean?",y="Count")
+  labs(x="Number of Shares >= Mean (0=no,1=yes)",
+       title=paste0("Boxplot: Are Number of Shares in ",A," Greater than the Mean?"),
+       y="Count")
 ```
 
 Now, let's summarize the rest of the numeric variables (i.e., not `channel`,`weekday`,`is_weekend` because they're factors). This will give the 5-number summary for all of the numeric variables in our data set. This can help us understand the distribution of each variable.
@@ -115,8 +118,44 @@ summary_df_train_x = subset(summary_df_train_x, select = -c(channel,weekday,is_w
 summary(summary_df_train_x)
 ```
 
+We can also viaully inspect the distribution of each variable by making a histogram for each. We can look at each variable and see if it has a symmetric, skewed left, or skewed right distribution.
+
+```{r 9:18_7_8_2022}
+library(Hmisc)
+hist.data.frame(summary_df_train_x,mtitl=paste0("Histograms for all Numeric Variabes in ",A))
+```
+
+Now, we will make a correlation plot comparing all of our numeric variables. When we do our modeling, we're looking for correlations that are greater than 0.75 and less than -0.75. In the plot below, we are looking for the bright red and bright blue sections.
+
+```{r 8:10_7_7_2022}
+correlation_plot_df_train_x <- df_train_x
+
+correlation_plot_df_train_x <- correlation_plot_df_train_x %>% filter(channel=="lifestyle") 
+
+correlation_plot_df_train_x <- dplyr::select_if(correlation_plot_df_train_x, is.numeric)
+
+r <- cor(correlation_plot_df_train_x, use="complete.obs")
+library(ggplot2)
+library(ggcorrplot)
+ggcorrplot(r, 
+            hc.order = TRUE, 
+            type = "lower",
+            tl.cex = 6,
+           title = paste0("Correlation Plot for ",A))
 
 
+```
+
+Now, lets look at the three variable we left out: `channel`,`weekday`,`is_weekend`. We will start by making a summary table showing how many articles (or observations) where found for each channel (if the data set is sorted for a particular channel, you should only see counts for that channel), weekday, and the number of articles that were published during te weekend.
+
+```{r 9:47_7_8_2022}
+other_df_train_x <- df_train_x
+
+other_df_train_x = subset(other_df_train_x, select = c(channel,weekday,is_weekend))
+
+summary(other_df_train_x)
+
+```
 
 
 
@@ -138,22 +177,7 @@ size = 2, binwidth = 30) +
   labs(x = "Best Keyword (Average Number of Shares)", title = "Distribution of Shares by Best Keyword", y="Number of Shares")
 ```
 
-```{r 8:10_7_7_2022}
-#we need to be able to cycle through the channels
-#maybe something like this: A <- df_train_x %>% filter(channel==channel)
-A <- df_train_x %>% filter(channel=="lifestyle") 
 
-A <- dplyr::select_if(A, is.numeric)
-
-r <- cor(A, use="complete.obs")
-library(ggplot2)
-library(ggcorrplot)
-ggcorrplot(r, 
-            hc.order = TRUE, 
-            type = "lower",
-            tl.cex = 6)
-#for our models, we use a correlation coefficient of >0.75 and <-0.75
-```
 
 ```{r 5:40_7_8_2022}
 #have to do # of shares and then another variable
