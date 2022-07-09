@@ -61,14 +61,22 @@ df_test_x <- df_test %>% filter(channel == A)
 
 # Exploratory Data Analysis
 
-After we have filtered our data for one channel, we need to first learn more about our response variable `shares`. Lets do a 5-number summary. It will show the minimum (Min.), first quartile (1st Qu.), median (Median), mean (Mean), third quartile (3rd Qu.), and maximum (Max.). This will help us get an idea about the overall spread of the `shares` data.
+After we have filtered our data for one channel, lets summarize all of the data. The table below gives us the sample size (N), mean (Mean), standard deviation (Std. Dev.), minimum (Min), 25th percentile (Pctl. 25), 75th percentile (Pctl. 75), and maximum (Max).
+
+```{r 8:29_7_7_2022}
+
+library(vtable)
+st(df_train_x)
+```
+
+Next, lets learn more about our response variable: `shares`. Lets do a 5-number summary. It will show the minimum (Min.), first quartile (1st Qu.), median (Median), mean (Mean), third quartile (3rd Qu.), and maximum (Max.). This will help us get an idea about the overall spread of the `shares` data.
 
 ```{r 8:15_7_8_2022}
 nrow(df_train_x)
 summary(df_train_x$shares)
 ```
 
-Next, lets plot a histogram of the `shares` data so that we can visually see it's distribution. For example, we can determine if the distribution or `shares` is symmetric, skewed left, or skewed right.
+Next, lets plot a histogram of the `shares` data so that we can visually see it's distribution. For example, we can determine if the distribution of `shares` is symmetric, skewed left, or skewed right.
 
 ```{r 8:21_7_8_2022}
 n=nrow(df_train_x)
@@ -84,7 +92,7 @@ Now, let's make a one-way contingency table to look at the total number of artic
 table(df_train_x$shares)
 ```
 
-Next, we'll create a box plot. Before we do that, let's make a binary version of the `shares` data. Using the mean of the `shares` data, we will give entries with a number of shares >= the mean a 1 and the rest a 0. This plot will show if the majority of shares is greater than or less than the mean of the shares. If it's larger than the mean, the boxplot over the 1 should be larger and more spread out than the one over the 0.
+Next, we'll create a box plot. Before we do that, let's make a binary version of the `shares` data. Using the mean of the `shares` data, we will give entries with a number of shares >= the mean a 1 and the rest a 0. This plot will show if the majority of shares is greater than or less than the mean of the shares. If it's larger than the mean, the box plot over the 1 should be larger and more spread out than the one over the 0.
 
 ```{r 8:49_7_8_2022}
 library(tidyverse)
@@ -105,7 +113,7 @@ boxplot_data_df_train_x %>% select(binary_shares, shares, everything())
 
 g <- ggplot(boxplot_data_df_train_x, aes(x = factor(binary_shares), y = shares))
 g + geom_boxplot(fill = "grey") +
-  labs(x="Number of Shares >= Mean (0=no,1=yes)",
+  labs(x="Number of Shares (0: < mean of shares, 1: >= mean of shares)",
        title=paste0("Boxplot: Are Number of Shares in ",A," Greater than the Mean?"),
        y="Count")
 ```
@@ -118,7 +126,7 @@ summary_df_train_x = subset(summary_df_train_x, select = -c(channel,weekday,is_w
 summary(summary_df_train_x)
 ```
 
-We can also viaully inspect the distribution of each variable by making a histogram for each. We can look at each variable and see if it has a symmetric, skewed left, or skewed right distribution.
+We can also visually inspect the distribution of each variable by making a histogram for each. We can look at each variable and see if it has a symmetric, skewed left, or skewed right distribution.
 
 ```{r 9:18_7_8_2022}
 library(Hmisc)
@@ -130,7 +138,7 @@ Now, we will make a correlation plot comparing all of our numeric variables. Whe
 ```{r 8:10_7_7_2022}
 correlation_plot_df_train_x <- df_train_x
 
-correlation_plot_df_train_x <- correlation_plot_df_train_x %>% filter(channel=="lifestyle") 
+#correlation_plot_df_train_x <- correlation_plot_df_train_x %>% filter(channel==A) 
 
 correlation_plot_df_train_x <- dplyr::select_if(correlation_plot_df_train_x, is.numeric)
 
@@ -142,11 +150,9 @@ ggcorrplot(r,
             type = "lower",
             tl.cex = 6,
            title = paste0("Correlation Plot for ",A))
-
-
 ```
 
-Now, lets look at the three variable we left out: `channel`,`weekday`,`is_weekend`. We will start by making a summary table showing how many articles (or observations) where found for each channel (if the data set is sorted for a particular channel, you should only see counts for that channel), weekday, and the number of articles that were published during te weekend.
+Now, lets look at the three variables we left out: `channel`,`weekday`,`is_weekend`. We will start by making a summary table showing how many articles (or observations) where found for each channel (if the data set is sorted for a particular channel, you should only see counts for that channel), weekday, and the number of articles that were published during the weekend.
 
 ```{r 9:47_7_8_2022}
 other_df_train_x <- df_train_x
@@ -168,7 +174,6 @@ table(other_df_train_x$channel, other_df_train_x$is_weekend)
 Below is a boxplot showing the number of shares for each weekday. It will help us understand if there are certain days of the week where articles get more or less shares.
 
 ```{r 10:00_7_8_2022}
-
 other_df_train_x <- df_train_x
 
 other_df_train_x = subset(other_df_train_x, select = c(channel,weekday,is_weekend,shares))
@@ -180,103 +185,4 @@ labs(
   title = paste0("Boxplots: Distribution of Shares in ",A," for Each Weekday"),
   x = "Weekday"
 )
-
 ```
-
-
-
-```{r 8:29_7_7_2022}
-#A summary table showing the sample size (N), mean, standard deviation (Std. Dev.), minimum (Min), 25th percentile, 75th percentile, and maximum (Max)
-library(vtable)
-st(df_train_x)
-```
-
-```{r}
-skim(df_train_x)
-```
-
-```{r 7:31_7_7_2022}
-#try out other variables
-g <- ggplot(df_train_x, aes(x = n_unique_tokens))
-g + geom_histogram(color = "blue", fill = "red",
-size = 2, binwidth = 30) +
-  labs(x = "Best Keyword (Average Number of Shares)", title = "Distribution of Shares by Best Keyword", y="Number of Shares")
-```
-
-
-
-```{r 5:40_7_8_2022}
-#have to do # of shares and then another variable
-avg_positive_polarity_Sum <- df_train_x %>% group_by(avg_positive_polarity) %>% summarize(prop_avg_positive_polarity = mean(shares),n = n())
-avg_positive_polarity_Sum
-
-ggplot(avg_positive_polarity_Sum, aes(x=avg_positive_polarity,y=prop_avg_positive_polarity,size=n)) + geom_point(stat="identity") +
-  labs(x = "Average Polarity of Positive words", title = "Average Polarity of Positive words",y="Proportion of Average Polarity of Positive words")
-
-```
-
-```{r 5:58_7_8_2022}
-
-g <- ggplot(df_train_x, aes(x = shares, y = self_reference_avg_sharess,col=weekday))
-g + geom_point() +
-  labs(x = "Number of Shares", title = "Number of Shares vs. Avg. Number of Shares of Referenced Articles in Mashable", y="Avg. Number of Shares of Referenced Articles in Mashable")
-```
-
-```{r 6:06_7_8_2022}
-g <- ggplot(df_train_x, aes(x = shares, y = n_tokens_content,group=n_tokens_title,fill=shares))
-g + geom_boxplot(fill = "grey") +
-  labs(x = "Number of Shares", title = "Distribution of Shares Grouped by Number of Words in Article", y="Number of Words in the Article")
-```
-
-
-```{r 6:17_7_8_2022}
-g <- ggplot(df_train_x, aes(x = shares))
-#g + geom_histogram(color = "blue", fill = "red", size = 2, bins = 1000)
-
-g + geom_density(adjust = 0.5, alpha = 0.5, aes(fill = is_weekend))
-
-# ggplot(df_train_x, aes(x = shares, fill = is_weekend)) + geom_histogram(aes(y = ..density..)) +
-# geom_density(adjust = 0.25, alpha = 0.5)
-
-```
-```{r 6:28_7_8_2022}
-
-df <- data.frame(index=1:nrow(df_train_x),
-                 var1=df_train_x$LDA_00,
-                 var2=df_train_x$LDA_01,
-                 var3=df_train_x$LDA_02,
-                 var4=df_train_x$LDA_03,
-                 var5=df_train_x$LDA_04)
-df <- melt(df ,  id.vars = 'index', variable.name = 'series')
-colnames(df)
- ggplot(df, aes(index, value)) +
-   geom_line()
-# g <- ggplot(df_train_x, aes(x = shares, y = n_tokens_content,group=n_tokens_title,fill=shares))
-# g + geom_boxplot(fill = "grey") +
-#   labs(x = "Number of Shares", title = "Distribution of Shares Grouped by Number of Words in Article", y="Number of Words in the Article")
-```
-
-```{r 7:01_7_8_2022}
-g<-ggplot(data = df_train_x, aes(x = weekday))
-g + geom_bar() +
-  labs(x = "Day of the Week the Article was Published", title = "Number of Articles Published Throughout the Week", y="Number of Articles Published")
-# g <- ggplot(df_train_x, aes(x = weekday, y = shares))
-# g + geom_boxplot(fill = "grey")
-
-```
-
-
-```{r}
-# quick summaries of numeric and categorical variables
-#skim(df_train_x)
-```
-
-
-
-```{r}
-#mean(df_train_x$shares)
-```
-
-
-
-Form `r channel` news channel subset, we found the mean of `shares` is `r mean(df_train_x, na.rm)`.
