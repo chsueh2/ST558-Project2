@@ -11,13 +11,13 @@ This project is to study the [Online News Popularity data set]() and create mode
 ## Links to Reports
 
 - [Introduction and Data Preparation](Introduction_and_Data.html)
-- [Analysis on Entertainment News Channel](Analysis on Entertainment.html)
-- [Analysis on Businiss News Channel](Analysis on Entertainment.html)
-- [Analysis on Lifestyle News Channel](Analysis on Lifestyle.html)
-- [Analysis on Misc News Channel](Analysis on Misc.html)
-- [Analysis on Socmedia News Channel](Analysis on Socmed.html)
-- [Analysis on Technology News Channel](Analysis on Tech.html)
-- [Analysis on World News Channel](Analysis on World.html)
+- [Analysis on Entertainment News Channel](Analysis_on_Entertainment.html)
+- [Analysis on Businiss News Channel](Analysis_on_Entertainment.html)
+- [Analysis on Lifestyle News Channel](Analysis_on_Lifestyle.html)
+- [Analysis on Misc News Channel](Analysis_on_Misc.html)
+- [Analysis on Socmedia News Channel](Analysis_on_Socmed.html)
+- [Analysis on Technology News Channel](Analysis_on_Tech.html)
+- [Analysis on World News Channel](Analysis_on_World.html)
 
 ## Automation of Report
 
