@@ -12,6 +12,7 @@ output:
     df_print: paged
 params:
   channel: "all"
+  load_data: TRUE
 ---
 
 ```{r include=FALSE}
@@ -31,9 +32,7 @@ We will use the following packages in this project:
 - `glue`: offers interpreted string literals for easy creation of dynamic messages and labels
 - `scales`: formats and labels scales nicely for better visualization
 - `skimr`: summary statistics about variables in data frames
-- `vtable`: summary statistics about variables in data frames
 - `ggcorrplot`: correlation plot matrix
-- `Hmisc`: for its quick histogram plotting function `hist.data.frame()`
 - `caret`: training and plotting classification and regression models
 - `randomForest`: random forest algorithm for classification and regression.
 - `ranger`: a fast implementation of random forests 
@@ -49,9 +48,9 @@ pacman::p_load(
   stats,
   tidyverse,
   lubridate,
-  glue, scales, skimr, vtable,
-  ggcorrplot, Hmisc,
-  caret, randomForest, gbm
+  glue, scales, skimr,
+  ggcorrplot,
+  caret, randomForest, ranger, gbm
 )
 ```
 
@@ -162,7 +161,7 @@ plot_modelinfo <- function(fit){
 ```
 
 
-## Data
+## Load and Prep Data
 
 The data file is saved in the `data` folder. After reading the raw data, we first check what variables it contains and if there is any missing or NA data.
 
@@ -193,7 +192,6 @@ tbl_channel_raw <- df_raw %>%
   table()
 
 tbl_channel_raw
-
 ```
 
 
@@ -248,10 +246,13 @@ df <- df_raw %>%
   ) %>% 
   relocate(shares, channel, weekday, is_weekend)
 
-# show the data frame
-df
+# check numer of rows
+nrow(df_raw) == nrow(df)
+
+# 2-way contingency table
+table(df$channel, df$weekday)
 ```
-Note that the data frame has the same number of rows with the raw data.
+Note that the data frame has the same number of rows with the raw data frame, and it has `r length(unique(df$channel))` channels.
 
 
 ## Split the Data
@@ -276,17 +277,6 @@ plot(ecdf(df_test$shares), col = "red", add = T)
 ```
 
 
-## Subset channel
-
-Next we subset data by channel. This is done by specifying rmarkdown parameter `channel`. By default, its value is `all` to keep all data  without any subsetting.
-
-```{r}
-# subset by channel
-if(params$channel != "all"){
-  df_train <- df_train %>% filter(channel == params$channel)
-  df_test <- df_test %>% filter(channel == params$channel)
-}
-```
 
 
 

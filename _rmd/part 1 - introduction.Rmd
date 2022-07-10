@@ -17,40 +17,31 @@ knitr::opts_chunk$set(fig.path = "./images/")
 ```
 
 
-## Introduction Section
+## Online News Popularity
 
-> You should have an introduction section that briefly describes the data and the variables you have to work with (just discuss the ones you want to use). Your target variables is the shares variable. You should also mention the purpose of your analysis and the methods you’ll use to model the response. You’ll describe those in more detail later. 
->
-> This section should be done by the ‘second’ group member. 
+In this project, we study the [Online News Popularity Data Set](https://archive.ics.uci.edu/ml/datasets/Online+News+Popularity) and model the number of shares of a new articles by the attributes including
+
+- Type, or channel, of news (Lifestyle, Entertainment, Business, Social Media, Tech, or World)
+- Number of links, images, and videos
+- Minimum, maximum, and average number of shares for the worst, best, and average keyword 
+- When the article was published (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, or a weekend)?
+- Minimum, maximum, and average polarity of positive and negative words in the article
+- Number of words in the title and in the content
+
+## Purpose
+The purpose of this study is to summarize the data and to predict the number of shares based on chosen aspects of interest. 
+
+## Workflow
+The workflow includes:
+
+- Load data and split training/test set (70%/30%)
+- For each news channel:
+  - EDA on train set
+  - Train and select model with cross validation
+  - Compare model performance
+
+The supervised learning algorithms we use to create models are linear regression and ensemble models (random forests and boosted tree). We also automate the generation of the analysis reports.
 
 
 
-## Start here...
 
-```{r render, eval = FALSE}
-#this is the code I used to render this document before I committed changes to the repository
-rmarkdown::render("part 1 - introduction.Rmd",
-                  output_format = "github_document",
-                  output_options = list(
-                    toc = TRUE,
-                    html_preview=FALSE) 
-)
-
-```
-
-# About the Data
-
-We are going to get our data from the UCI Machine Learning Repository. Essentially, it’s a website with over 600 data sets for people to practice coding and machine learning. We are going to use the Online News Popularity Data Set, which summarizes a variety of aspects about articles published by Mashable, an American news website, over the course of two years. Some of the aspects include:
-
-+ Number of words in the title and in the content
-+ Number of links, images, and videos
-+ Type, or channel, of news (Lifestyle, Entertainment, Business, Social Media, Tech, or World)
-+ Minimum, maximum, and average number of shares for the worst, best, and average keyword 
-+ When the article was published (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, or a weekend)?
-+ Minimum, maximum, and average polarity of positive and negative words in the article
-
-We will ignore the URL of the article and the number of days between the article publication and the dataset acquisition because they are non-predictive.
-
-# What We Are Going to Do
-
-The purpose of this repository is to automatically generate reports for each channel of news that summarize the data and to predict the number of shares based on chosen aspects of interest. To make our predictions, we will split the data up into a training and a test set and, using the training set, make a linear regression model and an ensemble tree-based model, specifically a random forest model and a boosted tree model.

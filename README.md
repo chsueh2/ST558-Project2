@@ -10,8 +10,14 @@ This project is to study the [Online News Popularity data set]() and create mode
 
 ## Links to Reports
 
-- [Introduction and Data Preparation]
-- [Analysis on Entertainment News Channel]
+- [Introduction and Data Preparation](Introduction_and_Data.html)
+- [Analysis on Entertainment News Channel](Analysis on Entertainment.html)
+- [Analysis on Businiss News Channel](Analysis on Entertainment.html)
+- [Analysis on Lifestyle News Channel](Analysis on Lifestyle.html)
+- [Analysis on Misc News Channel](Analysis on Misc.html)
+- [Analysis on Socmedia News Channel](Analysis on Socmed.html)
+- [Analysis on Technology News Channel](Analysis on Tech.html)
+- [Analysis on World News Channel](Analysis on World.html)
 
 ## Automation of Report
 
@@ -32,7 +38,6 @@ rmarkdown::render(
 The body of the template Rmarkdown file "Introduction_and_Data.Rmd":
 ````
 # Introduction
-
 ```{r, child="part 1 - introduction.Rmd"}
 ```
 
@@ -47,10 +52,10 @@ For the analysis reports on each news channel:
 ```
 # render analysis reports for each news channel
 for(i in unique(df_train$channel)){
-  filename <- "Analysis on " %&% str_to_title(i) %&% ".html"
+  filename <- "Analysis on " %&% str_to_title(i) %&% ".md"
 
   rmarkdown::render(
-    here("_Rmd", "analysis.Rmd"), 
+    here("_Rmd", "Analysis.Rmd"), 
     output_format = github_document(html_preview = FALSE), 
     output_file = filename,
     output_dir = here(),
@@ -58,3 +63,24 @@ for(i in unique(df_train$channel)){
   )
 }
 ```
+
+
+The body of the template Rmarkdown file "Analysis.Rmd":
+````
+This analysis report focuses on new channel: ``r params$channel``:
+```{r}
+# subset by channel
+if(params$channel != "all"){
+  df_train_x <- df_train %>% filter(channel == params$channel)
+  df_test_x <- df_test %>% filter(channel == params$channel)
+}
+```
+
+# Summarizations
+```{r, child="part 3 - eda v2.Rmd"}
+```
+
+# Modeling
+```{r, child="part 4 - model.Rmd"}
+```
+````

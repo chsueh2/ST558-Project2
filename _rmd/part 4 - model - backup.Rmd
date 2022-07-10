@@ -70,30 +70,56 @@ fit_lm_B <- fit_model(
 
 ### Random Forests Model
 
-Random forests is also known as random decision forests model. It is an ensemble method based on decision trees. It uses bagging to create multiple trees from bootstrap samples and aggregate the results to make decisions. However, instead of all predictors, only a subset of the predictors are used to grow trees. This effectively prevents highly correlated trees if there exists a strong predictor. Again, 5-fold cross validation is used to choose the best model. 
+Random forests is also known as random decision forests model. It is an ensemble method based on decision trees. It uses bagging to create multiple trees from bootstrap samples and aggregate the results to make decisions. However, instead of all predictors, only a subset of the predictors are used to grow trees. This effectively prevents highly correlated trees if there exists a strong predictor. Again, 5-fold cross validation is used to choose the best model. Note that:
+
+- We can include hyperparameter tuning, for example `tuneGrid = expand.grid(mtry = 1:16)`
+- In addition to `randomForest` package, we also use `ranger` package and tune the following parameters:
+  - mtry: number of variables randomly sampled as candidates at each split
+  - splitrule: since this is for regression, we choose "variance" option to use variance as our splitting rule
+  - min.node.size: minimum number of observations in each node
 
 
-```{r rf, cache=TRUE}
+```{r}
 # random forest models
 # Model A: `weekday` (categorical) + selected numeric predictors
 fit_rf_A <- fit_model(
   shares ~ ., df_train_x[, vars_A], df_test_x[, vars_A], method = "rf",
-  trControl = trainControl(method = "cv", number = 5))
-  
+  trControl = trainControl(method = "cv", number = 5),
+  tuneGrid = expand.grid(mtry = 1:16))
+
 # Model B: `is_weekend` (categorical) + all numeric predictors
 fit_rf_B <- fit_model(
   shares ~ ., df_train_x[, vars_B], df_test_x[, vars_B], method = "rf",
-  trControl = trainControl(method = "cv", number = 5))
+  trControl = trainControl(method = "cv", number = 5),
+  tuneGrid = expand.grid(mtry = 1:16))
+
+# random forests models (using ranger)
+# Model A: `weekday` (categorical) + selected numeric predictors
+fit_ranger_A <- fit_model(
+  shares ~ ., df_train_x[, vars_A], df_test_x[, vars_A], method = "ranger",
+  trControl = trainControl(method = "cv", number = 5),
+  tuneGrid = expand.grid(
+    mtry = 1:16,
+    splitrule = "variance",
+    min.node.size = c(5, 10, 15, 20)
+  ))
+
+# Model B: `is_weekend` (categorical) + all numeric predictors
+fit_ranger_B <- fit_model(
+  shares ~ ., df_train_x[, vars_B], df_test_x[, vars_B], method = "ranger",
+  trControl = trainControl(method = "cv", number = 5),
+  tuneGrid = expand.grid(
+    mtry = 1:16,
+    splitrule = "variance",
+    min.node.size = c(5, 10, 15, 20)
+  ))
 ```
 
 ### Boosted Tree Model
 
-Last, we try boosted tree models in which trees are grown sequentially. Each subsequent tree is grown on a modified version of the original tree and thus the prediction is updated as the tree grown. We use 5-fold cross validation to determine the best parameters:
+Last, we try boosted tree models in which trees are grown sequentially. Each subsequent tree is grown on a modified version of the original tree and thus the prediction is updated as the tree grown.
 
-- `n.trees`: total number of trees to fit
-- `interaction.depth`: maximum depth of each tree
-- `shrinkage`: learning rate (set to 0.1)
-- `n.minobsinnode`: minimum number of observations in the terminal nodes (set to 10)
+We use 5-fold cross validation to determine the best parameters.
 
 
 ```{r}
@@ -107,7 +133,7 @@ fit_boosted_A <- fit_model(
     n.trees = seq(5, 200, 5),
     interaction.depth = 1:4,
     shrinkage = 0.1,
-    n.minobsinnode = 10),
+    n.minobsinnode =10),
   verbose = FALSE)
 
 # Model B: `is_weekend` (categorical) + all numeric predictors
@@ -118,7 +144,7 @@ fit_boosted_B <- fit_model(
     n.trees = seq(5, 200, 5),
     interaction.depth = 1:4,
     shrinkage = 0.1,
-    n.minobsinnode = 10),
+    n.minobsinnode =10),
   verbose = FALSE)
 ```
 
@@ -130,6 +156,7 @@ We use RMSE to compare the model performance on the test set:
 df_comparison <- tibble(
     Linear_Regression = c(fit_lm_A["RMSE"], fit_lm_B["RMSE"]),
     Random_Forests = c(fit_rf_A["RMSE"], fit_rf_B["RMSE"]),
+    Random_Forests_ranger = c(fit_ranger_A["RMSE"], fit_ranger_B["RMSE"]),
     Boosted_Tree = c(fit_boosted_A["RMSE"], fit_boosted_B["RMSE"])
   ) %>%
   bind_cols(model = c("A: shares ~ weekday + selected numeric vars", "B: shares ~ is_weekend + all numeric vars")) %>%

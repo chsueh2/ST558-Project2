@@ -13,7 +13,7 @@
 
 <meta name="date" content="2022-07-10" />
 
-<title>ST558 Porject 1: Part 1</title>
+<title>ST558 Porject 2 - Introduction and Data</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1582,6 +1582,96 @@ window.initializeSourceEmbed = function(filename) {
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -1734,13 +1824,18 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">ST558 Porject 1: Part 1</h1>
+<h1 class="title toc-ignore">ST558 Porject 2 - Introduction and
+Data</h1>
 <h4 class="author">Bridget Knapp and Chien-Lan Hsueh</h4>
 <h4 class="date">2022-07-10</h4>
 
 </div>
 
 
+<!-- rnb-text-begin -->
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<!-- rnb-text-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-text-begin -->
@@ -1783,9 +1878,317 @@ number of shares based on chosen aspects of interest.</p>
 regression and ensemble models (random forests and boosted tree). We
 also automate the generation of the analysis reports.</p>
 <!-- rnb-text-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<!-- rnb-text-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-text-begin -->
+<div id="set-up" class="section level2">
+<h2>Set up</h2>
+<div id="packages" class="section level3">
+<h3>Packages</h3>
+<p>We will use the following packages in this project:</p>
+<ul>
+<li><code>here</code>: enables easy file referencing and builds file
+paths in a OS-independent way</li>
+<li><code>stats</code>: loads this before loading <code>tidyverse</code>
+to avoid masking some <code>tidyverse</code> functions</li>
+<li><code>tidyverse</code>: includes collections of useful packages like
+<code>dplyr</code> (data manipulation), <code>tidyr</code> (tidying
+data), <code>ggplots</code> (creating graphs), etc.</li>
+<li><code>lubridate</code>: handle date and datetime data type</li>
+<li><code>glue</code>: offers interpreted string literals for easy
+creation of dynamic messages and labels</li>
+<li><code>scales</code>: formats and labels scales nicely for better
+visualization</li>
+<li><code>skimr</code>: summary statistics about variables in data
+frames</li>
+<li><code>ggcorrplot</code>: correlation plot matrix</li>
+<li><code>Hmisc</code>: for its quick histogram plotting function
+<code>hist.data.frame()</code></li>
+<li><code>caret</code>: training and plotting classification and
+regression models</li>
+<li><code>randomForest</code>: random forest algorithm for
+classification and regression.</li>
+<li><code>ranger</code>: a fast implementation of random forests</li>
+<li><code>gbm</code>: generalized boosted regression models</li>
+</ul>
+<p>In addition, the <code>pacman</code> package provides handy tools to
+manage R packages (install, update, load and unload). We use its
+<code>p_laod()</code> instead of <code>libarary()</code> to load the
+packages listed above.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="helper-functions" class="section level3">
+<h3>Helper Functions</h3>
+<p>We define a helper function <code>fit_model()</code> wrapping
+<code>caret::train()</code>. This function trains models on training
+data set and test the model performance on test data set.</p>
+<blockquote>
+<p>Arguments:</p>
+<ul>
+<li><code>formula</code>: formula</li>
+<li><code>df_train</code>: training set</li>
+<li><code>df_test</code>: test set</li>
+<li><code>method</code>: classification or regression model to use</li>
+<li><code>preProcess</code>: pre-processing of the predictors</li>
+<li><code>trControl</code>: a list of values that define how train
+acts</li>
+<li><code>tuneGrid</code>: a data frame with possible tuning values</li>
+<li><code>plot</code>: whether to plot parameter and metric</li>
+<li><code>...</code>: arguments passed to the classification or
+regression routine</li>
+</ul>
+<p>Returned Value: a performance metric (for a numeric response) or
+confusion matrix (for a categorical response)</p>
+</blockquote>
+<p>In case a tuning parameter plot is needed, this function calls a
+helper function <code>plot_modelinfo()</code> (defined below) to extract
+model information including the tuning parameter and the corresponded
+metric to produce a scatter plot.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBhIHdyYXBwZXIgZnVuY3Rpb24gdG8gdHJhaW4gYSBtb2RlbCB3aXRoIHRyYWluIHNldCBhbmQgY2FsY3VsYXRlIHRoZSBtb2RlbCBwZXJmb3JtYW5jZSBvbiB0ZXN0IHNldFxuZml0X21vZGVsIDwtIGZ1bmN0aW9uKFxuICAgIGZvcm11bGEsIGRmX3RyYWluLCBkZl90ZXN0LCBtZXRob2QsIFxuICAgIHByZVByb2Nlc3MgPSBjKFwiY2VudGVyXCIsIFwic2NhbGVcIiksXG4gICAgdHJDb250cm9sID0gdHJhaW5Db250cm9sKCksIFxuICAgIHR1bmVHcmlkID0gTlVMTCwgXG4gICAgcGxvdCA9IEZBTFNFLCAuLi4gKXtcbiAgXG4gICMgdGltZXIgLSBzdGFydFxuICBwcm9jX3RpbWVyIDwtIHByb2MudGltZSgpXG4gIFxuICAjIHRyYWluIG1vZGVsXG4gIGZpdCA8LSB0cmFpbihcbiAgICBmb3JtID0gZm9ybXVsYSxcbiAgICBkYXRhID0gZGZfdHJhaW4sXG4gICAgbWV0aG9kID0gbWV0aG9kLFxuICAgIHByZVByb2Nlc3MgPSBjKFwiY2VudGVyXCIsIFwic2NhbGVcIiksXG4gICAgdHJDb250cm9sID0gdHJDb250cm9sLFxuICAgIHR1bmVHcmlkID0gdHVuZUdyaWQsIC4uLilcbiAgXG4gICMgdGltZXIgLSByZXBvcnQgdGltZSB1c2VkXG4gIHByaW50KHByb2MudGltZSgpIC0gcHJvY190aW1lcilcbiAgXG4gICMgcHJpbnQgdGhlIGJlc3QgdHVuZSBpZiB0aGVyZSBpcyBhIHR1bmluZyBwYXJhbWV0ZXJcbiAgaWYoaXMubnVsbCh0dW5lR3JpZCkpe1xuICAgIHByaW50KFwiTm8gdHVuaW5nIHBhcmFtZXRlclwiKVxuICB9IGVsc2Uge1xuICAgICMgcHJpbnQgdGhlIGJlc3QgdHVuZSBcbiAgICBwcmludChcIlRoZSBiZXN0IHR1bmUgaXMgZm91bmQgd2l0aDpcIilcbiAgICBwcmludChnbHVlKFwiXFx0e25hbWVzKGZpdCRiZXN0VHVuZSl9ID0ge2ZpdCRiZXN0VHVuZVsxLF19XCIpKVxuICAgIGlmKHBsb3QpIHBsb3RfbW9kZWxpbmZvKGZpdClcbiAgfVxuICBcbiAgIyBtYWtlIHByZWRpY3Rpb24gb24gdGVzdCBzZXRcbiAgcHJlZCA8LSBwcmVkaWN0KGZpdCwgbmV3ZGF0YSA9IGRmX3Rlc3QpXG4gIFxuICAjIHJldHVybiBwZXJmb3JtYW5jZSBtZXRyaWMgb3IgY29uZnVzaW9uIG1hdHJpeCBkZXBlbmRpbmcgb24gcmVzcG9uc2UgdHlwZVxuICBpZihpcy5udW1lcmljKHByZWQpKXtcbiAgICAjIG51bWVyaWMgcmVzcG9uc2VcbiAgICBwZXJmb3JtYW5jZSA8LSBwb3N0UmVzYW1wbGUocHJlZCwgb2JzID0gZGZfdGVzdFssMV0gJT4lIGFzX3ZlY3RvcigpKVxuICAgICMgcHJpbnQgcGVyZm9ybWFuY2UgbWV0cmljc1xuICAgIHByaW50KFwiUGVyZm9ybWFuY2UgbWV0cmljczpcIilcbiAgICBwcmludChwZXJmb3JtYW5jZSlcbiAgICBcbiAgICAjIHJldHVybiB0aGUgcGVyZm9ybWFuY2UgbWV0cmljXG4gICAgcmV0dXJuKHBlcmZvcm1hbmNlKVxuICAgIFxuICB9IGVsc2UgaWYoaXMuZmFjdG9yKHByZWQpKXtcbiAgICAjIGNhdGVnb3JpY2FsIHJlc3BvbnNlXG4gICAgY2ZtIDwtIGNvbmZ1c2lvbk1hdHJpeChwcmVkLCBkZl90ZXN0WywxXSAlPiUgYXNfdmVjdG9yKCkpXG4gICAgIyBwcmludCBjb25mdXNpb24gbWF0cml4IGFuZCBhY2N1cmFjeVxuICAgIHByaW50KFwiQ29uZnVzaW9uIHRhYmxlOlwiKVxuICAgIHByaW50KGNmbSR0YWJsZSlcbiAgICBwcmludChnbHVlKFwiQWNjdXJhY3kgPSB7Y2ZtJG92ZXJhbGxbJ0FjY3VyYWN5J119XCIpKVxuICAgIFxuICAgICMgcmV0dXJuIHRoZSBjb25mdXNpb24gbWF0cml4XG4gICAgcmV0dXJuKGNmbSlcbiAgfVxufVxuXG4jIGEgaGVscGVyIGZ1bmN0aW9uIHRvIHBsb3QgdGhlIG1ldHJpYyB2cy4gdGhlIHR1bmluZyBwYXJhbWV0ZXJcbnBsb3RfbW9kZWxpbmZvIDwtIGZ1bmN0aW9uKGZpdCl7XG4gICMgZ2V0IG1vZGVsIGluZm9cbiAgbW9kZWwgPC0gZml0JG1vZGVsSW5mbyRsYWJlbFxuICBwYXJhbWV0ZXIgPC0gZml0JG1vZGVsSW5mbyRwYXJhbWV0ZXJzJHBhcmFtZXRlclxuICBkZXNjcmlwdGlvbiA8LSBmaXQkbW9kZWxJbmZvJHBhcmFtZXRlcnMkbGFiZWxcbiAgXG4gICMgcGxvdCBwYXJhbWV0ZXIgdnMgbWV0cmljc1xuICBwIDwtIGZpdCRyZXN1bHRzICU+JSBcbiAgICByZW5hbWVfYXQoMSwgflwieFwiKSAlPiUgXG4gICAgcGl2b3RfbG9uZ2VyKGNvbHMgPSAtMSwgbmFtZXNfdG8gPSBcIk1ldHJpY1wiKSAlPiUgXG4gICAgZ2dwbG90KGFlcyh4LCB2YWx1ZSwgY29sb3IgPSBNZXRyaWMpKSArXG4gICAgZ2VvbV9wb2ludCgpICtcbiAgICBnZW9tX2xpbmUoKSArXG4gICAgZmFjZXRfZ3JpZChyb3dzID0gdmFycyhNZXRyaWMpLCBzY2FsZXMgPSBcImZyZWVfeVwiKSArXG4gICAgbGFicyhcbiAgICAgIHRpdGxlID0gZ2x1ZShcInttb2RlbH06IEh5cGVycGFyYW1ldGVyIFR1bmluZ1wiKSxcbiAgICAgIHggPSBnbHVlKFwie3BhcmFtZXRlcn0gKHtkZXNjcmlwdGlvbn0pXCIpXG4gICAgKVxuICBwcmludChwKVxuICByZXR1cm4ocClcbn1cbmBgYCJ9 -->
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a wrapper function to train a model with train set and calculate the model performance on test set</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>fit_model <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    formula, df_train, df_test, method, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">preProcess =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">trControl =</span> <span class="fu">trainControl</span>(), </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuneGrid =</span> <span class="cn">NULL</span>, </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot =</span> <span class="cn">FALSE</span>, ... ){</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># timer - start</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  proc_timer <span class="ot">&lt;-</span> <span class="fu">proc.time</span>()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># train model</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">form =</span> formula,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_train,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> method,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">preProcess =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">trControl =</span> trControl,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuneGrid =</span> tuneGrid, ...)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># timer - report time used</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">proc.time</span>() <span class="sc">-</span> proc_timer)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print the best tune if there is a tuning parameter</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(tuneGrid)){</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;No tuning parameter&quot;</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print the best tune </span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;The best tune is found with:&quot;</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;</span><span class="sc">\t</span><span class="st">{names(fit$bestTune)} = {fit$bestTune[1,]}&quot;</span>))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(plot) <span class="fu">plot_modelinfo</span>(fit)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make prediction on test set</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> df_test)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return performance metric or confusion matrix depending on response type</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.numeric</span>(pred)){</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># numeric response</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    performance <span class="ot">&lt;-</span> <span class="fu">postResample</span>(pred, <span class="at">obs =</span> df_test[,<span class="dv">1</span>] <span class="sc">%&gt;%</span> <span class="fu">as_vector</span>())</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print performance metrics</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Performance metrics:&quot;</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(performance)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return the performance metric</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(performance)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is.factor</span>(pred)){</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># categorical response</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    cfm <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(pred, df_test[,<span class="dv">1</span>] <span class="sc">%&gt;%</span> <span class="fu">as_vector</span>())</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print confusion matrix and accuracy</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Confusion table:&quot;</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(cfm<span class="sc">$</span>table)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;Accuracy = {cfm$overall[&#39;Accuracy&#39;]}&quot;</span>))</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return the confusion matrix</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(cfm)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co"># a helper function to plot the metric vs. the tuning parameter</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>plot_modelinfo <span class="ot">&lt;-</span> <span class="cf">function</span>(fit){</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get model info</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> fit<span class="sc">$</span>modelInfo<span class="sc">$</span>label</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  parameter <span class="ot">&lt;-</span> fit<span class="sc">$</span>modelInfo<span class="sc">$</span>parameters<span class="sc">$</span>parameter</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>  description <span class="ot">&lt;-</span> fit<span class="sc">$</span>modelInfo<span class="sc">$</span>parameters<span class="sc">$</span>label</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>  <span class="co"># plot parameter vs metrics</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> fit<span class="sc">$</span>results <span class="sc">%&gt;%</span> </span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_at</span>(<span class="dv">1</span>, <span class="sc">~</span><span class="st">&quot;x&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">names_to =</span> <span class="st">&quot;Metric&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, value, <span class="at">color =</span> Metric)) <span class="sc">+</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(Metric), <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="fu">glue</span>(<span class="st">&quot;{model}: Hyperparameter Tuning&quot;</span>),</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">glue</span>(<span class="st">&quot;{parameter} ({description})&quot;</span>)</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(p)</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="load-and-prep-data" class="section level2">
+<h2>Load and Prep Data</h2>
+<p>The data file is saved in the <code>data</code> folder. After reading
+the raw data, we first check what variables it contains and if there is
+any missing or NA data.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZfcmF3IDwtIHJlYWRfY3N2KGhlcmUoXCJkYXRhXCIsIFwiT25saW5lTmV3c1BvcHVsYXJpdHkuY3N2XCIpKVxuIFxuIyBzaG93IHRoZSByYXcgZGF0YVxuaGVhZChkZl9yYXcpXG5cbiMgY2hlY2sgc3RydWN0dXJlXG5zdHIoZGZfcmF3KVxuXG4jIGNoZWNrIGlmIGFueSBtaXNzaW5nIHZhbHVlc1xuYW55TkEoZGZfcmF3KVxuYGBgIn0= -->
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;OnlineNewsPopularity.csv&quot;</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># show the raw data</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_raw)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check structure</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_raw)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># check if any missing values</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>(df_raw)</span></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>First we check on the six <code>data_channel_is_*</code> columns with
+an one-way table on the sum of their values for each row (record):</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjcmVhdGUgYSBjb3VudCB0YWJsZSBvbiB0aGUgc3VtIG9mIHRoZSBzaXggYGRhdGFfY2hhbm5lbF9pc18qYCBjb2x1bW5zXG50YmxfY2hhbm5lbF9yYXcgPC0gZGZfcmF3ICU+JSBcbiAgIyBkZWFsIHdpdGggY29sdW1ucyBvZiBpbnRlcmVzdCBvbmx5IGZvciBjb21wdXRpbmcgZWZmaWNpZW5jeVxuICBzZWxlY3Qoc3RhcnRzX3dpdGgoXCJkYXRhX2NoYW5uZWxfaXNfXCIpKSAlPiUgXG4gIG11dGF0ZShzdW1fb2ZfY2hhbm5lbHMgPSByb3dTdW1zKGFjcm9zcyhldmVyeXRoaW5nKCkpKSkgJT4lIFxuICBzZWxlY3Qoc3VtX29mX2NoYW5uZWxzKSAlPiUgXG4gICMgY3JlYXRlIGFuIG9uZS13YXkgdGFibGUgZm9yIGNvdW50c1xuICB0YWJsZSgpXG5cbnRibF9jaGFubmVsX3Jhd1xuYGBgIn0= -->
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a count table on the sum of the six `data_channel_is_*` columns</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tbl_channel_raw <span class="ot">&lt;-</span> df_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># deal with columns of interest only for computing efficiency</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;data_channel_is_&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sum_of_channels =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">everything</span>()))) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sum_of_channels) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create an one-way table for counts</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>tbl_channel_raw</span></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Among the 39644 record, 33510 records are from one of the 6 channels
+(<code>lifestyle</code>, <code>entertainment</code>, <code>bus</code>
+for business, <code>socmed</code> for social media, <code>tech</code>
+and <code>world</code>) and the other 6134 are from the other channel
+(not included in these 6 channels). Therefore, we can create a new data
+channel <code>misc</code> to label the.</p>
+<p>Next, we will prepare the data with the following steps:</p>
+<ul>
+<li>remove <code>url</code> and <code>timedelta</code> since we are not
+using them as predictors (non-predictive)</li>
+<li>create a new column <code>data_channel_is_misc</code> for those
+records not from the 6 channels</li>
+<li>convert the 7 <code>data_channel_is_*</code> columns (original 6 +
+newly created 1 in the last step) into a long-form column
+<code>channel</code></li>
+<li>convert the 7 <code>weekday_is_*</code> columns into a long-column
+<code>weekday</code></li>
+<li>remove the columns created in the intermediate steps</li>
+<li>convert categorical variables <code>channel</code>,
+<code>weekday</code> and <code>is_weekend</code> to factors</li>
+<li>move the response variable <code>shares</code> and the categorical
+predictors <code>channel</code>, <code>weekday</code> and
+<code>is_weekend</code> to the first columns for easy handling when
+analyzing models</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYgPC0gZGZfcmF3ICU+JSBcbiAgc2VsZWN0KC11cmwsIC10aW1lZGVsdGEpICU+JSBcbiAgbXV0YXRlKFxuICAgIHN1bV9vZl9jaGFubmVscyA9IHJvd1N1bXMoYWNyb3NzKHN0YXJ0c193aXRoKFwiZGF0YV9jaGFubmVsX2lzX1wiKSkpLFxuICAgICMgbGFiZWwgcmVjb3JkcyBub3QgZnJvbSB0aGUgNiBjaGFubmVsc1xuICAgIGRhdGFfY2hhbm5lbF9pc19taXNjID0gYXMuaW50ZWdlcihzdW1fb2ZfY2hhbm5lbHMgPT0gMClcbiAgKSAlPiUgXG4gICMgcGl2b3QgdGhlIGNoYW5uZWwgY29sdW1ucyAodG8gYSBsb25nIGZvcm0pXG4gIHBpdm90X2xvbmdlcihcbiAgICBjb2xzID0gc3RhcnRzX3dpdGgoXCJkYXRhX2NoYW5uZWxfaXNfXCIpLFxuICAgIG5hbWVzX3RvID0gXCJjaGFubmVsXCIsXG4gICAgbmFtZXNfcHJlZml4ID0gXCJkYXRhX2NoYW5uZWxfaXNfXCIsXG4gICAgdmFsdWVzX3RvID0gXCJjaGFubmVsX2luZGljYXRvclwiXG4gICkgJT4lIFxuICAjIHBpdm90IHRoZSBjaGFubmVsIGNvbHVtbnMgKHRvIGEgbG9uZyBmb3JtKVxuICBwaXZvdF9sb25nZXIoXG4gICAgY29scyA9IHN0YXJ0c193aXRoKFwid2Vla2RheV9pc19cIiksXG4gICAgbmFtZXNfdG8gPSBcIndlZWtkYXlcIixcbiAgICBuYW1lc19wcmVmaXggPSBcIndlZWtkYXlfaXNfXCIsXG4gICAgdmFsdWVzX3RvID0gXCJ3ZWVrZGF5X2luZGljYXRvclwiXG4gICkgJT4lIFxuICAjIHJlbW92ZSByZWR1bmRhbnQgcmVjb3Jkc1xuICBmaWx0ZXIoXG4gICAgY2hhbm5lbF9pbmRpY2F0b3IgPT0gMSxcbiAgICB3ZWVrZGF5X2luZGljYXRvciA9PSAxXG4gICkgJT4lIFxuICAjIHJlbW92ZSByZWR1bmRhbnQgY29sdW1uc1xuICBzZWxlY3QoLXN1bV9vZl9jaGFubmVscywgLWNoYW5uZWxfaW5kaWNhdG9yLCAtd2Vla2RheV9pbmRpY2F0b3IpICU+JSBcbiAgIyBjb252ZXJ0IGNhdGVnb3JpY2FsIHZhcmlhYmxlcyB0byBmYWN0b3JzXG4gIG11dGF0ZShcbiAgICBjaGFubmVsID0gZmFjdG9yKGNoYW5uZWwpLFxuICAgIHdlZWtkYXkgPSBmYWN0b3Iod2Vla2RheSwgbGV2ZWxzID0gbGV2ZWxzKHdkYXkoU3lzLkRhdGUoKSwgbGFiZWwgPSBULCBhYmJyID0gRikpICU+JSBzdHJfdG9fbG93ZXIoKSksXG4gICAgaXNfd2Vla2VuZCA9IGlmX2Vsc2UoaXNfd2Vla2VuZCA9PSAxLCBcIllcIiwgXCJOXCIpICU+JSBmYWN0b3IoKVxuICApICU+JSBcbiAgcmVsb2NhdGUoc2hhcmVzLCBjaGFubmVsLCB3ZWVrZGF5LCBpc193ZWVrZW5kKVxuXG4jIGNoZWNrIG51bWVyIG9mIHJvd3Ncbm5yb3coZGZfcmF3KSA9PSBucm93KGRmKVxuXG4jIDItd2F5IGNvbnRpbmdlbmN5IHRhYmxlXG50YWJsZShkZiRjaGFubmVsLCBkZiR3ZWVrZGF5KVxuYGBgIn0= -->
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>url, <span class="sc">-</span>timedelta) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sum_of_channels =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">&quot;data_channel_is_&quot;</span>))),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># label records not from the 6 channels</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data_channel_is_misc =</span> <span class="fu">as.integer</span>(sum_of_channels <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pivot the channel columns (to a long form)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;data_channel_is_&quot;</span>),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;channel&quot;</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_prefix =</span> <span class="st">&quot;data_channel_is_&quot;</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;channel_indicator&quot;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pivot the channel columns (to a long form)</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;weekday_is_&quot;</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;weekday&quot;</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_prefix =</span> <span class="st">&quot;weekday_is_&quot;</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;weekday_indicator&quot;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove redundant records</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    channel_indicator <span class="sc">==</span> <span class="dv">1</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    weekday_indicator <span class="sc">==</span> <span class="dv">1</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove redundant columns</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>sum_of_channels, <span class="sc">-</span>channel_indicator, <span class="sc">-</span>weekday_indicator) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert categorical variables to factors</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">channel =</span> <span class="fu">factor</span>(channel),</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">weekday =</span> <span class="fu">factor</span>(weekday, <span class="at">levels =</span> <span class="fu">levels</span>(<span class="fu">wday</span>(<span class="fu">Sys.Date</span>(), <span class="at">label =</span> T, <span class="at">abbr =</span> F)) <span class="sc">%&gt;%</span> <span class="fu">str_to_lower</span>()),</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">is_weekend =</span> <span class="fu">if_else</span>(is_weekend <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;N&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">factor</span>()</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(shares, channel, weekday, is_weekend)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co"># check numer of rows</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_raw) <span class="sc">==</span> <span class="fu">nrow</span>(df)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-way contingency table</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>channel, df<span class="sc">$</span>weekday)</span></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Note that the data frame has the same number of rows with the raw
+data frame, and it has 7 channels.</p>
+</div>
+<div id="split-the-data" class="section level2">
+<h2>Split the Data</h2>
+<p>We use <code>caret::createDataPartition()</code> to create a 70/30
+split of training and test sets. This is done with
+<code>set.seed()</code> to make this analysis reproducible.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0LnNlZWQoMjAyMilcblxuIyBzcGxpdCBkYXRhXG50cmFpbkluZGV4IDwtIGNyZWF0ZURhdGFQYXJ0aXRpb24oZGYkc2hhcmVzLCBwID0gMC43LCBsaXN0ID0gRilcbmRmX3RyYWluIDwtIGRmW3RyYWluSW5kZXgsIF1cbmRmX3Rlc3QgPC0gZGZbLXRyYWluSW5kZXgsIF1cbmBgYCJ9 -->
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># split data</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(df<span class="sc">$</span>shares, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> F)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df_train <span class="ot">&lt;-</span> df[trainIndex, ]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df_test <span class="ot">&lt;-</span> df[<span class="sc">-</span>trainIndex, ]</span></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Check if both train and test sets have similar cdf:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjaGVjayBiYWxhbmNlIC0gY29tcGFyZSBlY2RmIG9mIHRyYWluIGFuZCB0ZXN0IHNldHNcbnBsb3QoZWNkZihkZl90cmFpbiRzaGFyZXMpLCBjb2wgPSBcImJsdWVcIiwgbWFpbiA9IFwiRW1waXJpY2FsIEN1bXVsYXRpdmUgRGlzdHJpYnV0aW9uXCIsIHhsYWIgPSBcInNoYXJlc1wiKVxucGxvdChlY2RmKGRmX3Rlc3Qkc2hhcmVzKSwgY29sID0gXCJyZWRcIiwgYWRkID0gVClcbmBgYCJ9 -->
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check balance - compare ecdf of train and test sets</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ecdf</span>(df_train<span class="sc">$</span>shares), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Empirical Cumulative Distribution&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;shares&quot;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ecdf</span>(df_test<span class="sc">$</span>shares), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">add =</span> T)</span></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNUNTU4IFBvcmplY3QgMTogUGFydCAxIg0KYXV0aG9yOiAiQnJpZGdldCBLbmFwcCBhbmQgQ2hpZW4tTGFuIEhzdWVoIg0KaW5zdGl0dXRlOiBPbmxpbmUgU3RhdGlzdGljcyBNYXN0ZXIgUHJvZ3JhbSwgTkNTVQ0KZGF0ZTogImByIFN5cy5EYXRlKClgIg0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIGNvZGVfZm9sZGluZzogbm9uZQ0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KLS0tDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZmlnLnBhdGggPSAiLi9pbWFnZXMvIikNCmBgYA0KDQoNCiMjIE9ubGluZSBOZXdzIFBvcHVsYXJpdHkNCg0KSW4gdGhpcyBwcm9qZWN0LCB3ZSBzdHVkeSB0aGUgW09ubGluZSBOZXdzIFBvcHVsYXJpdHkgRGF0YSBTZXRdKGh0dHBzOi8vYXJjaGl2ZS5pY3MudWNpLmVkdS9tbC9kYXRhc2V0cy9PbmxpbmUrTmV3cytQb3B1bGFyaXR5KSBhbmQgbW9kZWwgdGhlIG51bWJlciBvZiBzaGFyZXMgb2YgYSBuZXcgYXJ0aWNsZXMgYnkgdGhlIGF0dHJpYnV0ZXMgaW5jbHVkaW5nDQoNCi0gVHlwZSwgb3IgY2hhbm5lbCwgb2YgbmV3cyAoTGlmZXN0eWxlLCBFbnRlcnRhaW5tZW50LCBCdXNpbmVzcywgU29jaWFsIE1lZGlhLCBUZWNoLCBvciBXb3JsZCkNCi0gTnVtYmVyIG9mIGxpbmtzLCBpbWFnZXMsIGFuZCB2aWRlb3MNCi0gTWluaW11bSwgbWF4aW11bSwgYW5kIGF2ZXJhZ2UgbnVtYmVyIG9mIHNoYXJlcyBmb3IgdGhlIHdvcnN0LCBiZXN0LCBhbmQgYXZlcmFnZSBrZXl3b3JkIA0KLSBXaGVuIHRoZSBhcnRpY2xlIHdhcyBwdWJsaXNoZWQgKE1vbmRheSwgVHVlc2RheSwgV2VkbmVzZGF5LCBUaHVyc2RheSwgRnJpZGF5LCBTYXR1cmRheSwgU3VuZGF5LCBvciBhIHdlZWtlbmQpPw0KLSBNaW5pbXVtLCBtYXhpbXVtLCBhbmQgYXZlcmFnZSBwb2xhcml0eSBvZiBwb3NpdGl2ZSBhbmQgbmVnYXRpdmUgd29yZHMgaW4gdGhlIGFydGljbGUNCi0gTnVtYmVyIG9mIHdvcmRzIGluIHRoZSB0aXRsZSBhbmQgaW4gdGhlIGNvbnRlbnQNCg0KIyMgUHVycG9zZQ0KVGhlIHB1cnBvc2Ugb2YgdGhpcyBzdHVkeSBpcyB0byBzdW1tYXJpemUgdGhlIGRhdGEgYW5kIHRvIHByZWRpY3QgdGhlIG51bWJlciBvZiBzaGFyZXMgYmFzZWQgb24gY2hvc2VuIGFzcGVjdHMgb2YgaW50ZXJlc3QuIA0KDQojIyBXb3JrZmxvdw0KVGhlIHdvcmtmbG93IGluY2x1ZGVzOg0KDQotIExvYWQgZGF0YSBhbmQgc3BsaXQgdHJhaW5pbmcvdGVzdCBzZXQgKDcwJS8zMCUpDQotIEZvciBlYWNoIG5ld3MgY2hhbm5lbDoNCiAgLSBFREEgb24gdHJhaW4gc2V0DQogIC0gVHJhaW4gYW5kIHNlbGVjdCBtb2RlbCB3aXRoIGNyb3NzIHZhbGlkYXRpb24NCiAgLSBDb21wYXJlIG1vZGVsIHBlcmZvcm1hbmNlDQoNClRoZSBzdXBlcnZpc2VkIGxlYXJuaW5nIGFsZ29yaXRobXMgd2UgdXNlIHRvIGNyZWF0ZSBtb2RlbHMgYXJlIGxpbmVhciByZWdyZXNzaW9uIGFuZCBlbnNlbWJsZSBtb2RlbHMgKHJhbmRvbSBmb3Jlc3RzIGFuZCBib29zdGVkIHRyZWUpLiBXZSBhbHNvIGF1dG9tYXRlIHRoZSBnZW5lcmF0aW9uIG9mIHRoZSBhbmFseXNpcyByZXBvcnRzLg0KDQoNCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNUNTU4IFBvcmplY3QgMiAtIEludHJvZHVjdGlvbiBhbmQgRGF0YSINCmF1dGhvcjogIkJyaWRnZXQgS25hcHAgYW5kIENoaWVuLUxhbiBIc3VlaCINCmluc3RpdHV0ZTogT25saW5lIFN0YXRpc3RpY3MgTWFzdGVyIFByb2dyYW0sIE5DU1UNCmRhdGU6ICJgciBTeXMuRGF0ZSgpYCINCm91dHB1dDoNCiAgaHRtbF9kb2N1bWVudDoNCiAgICBkZl9wcmludDogcGFnZWQNCiAgaHRtbF9ub3RlYm9vazoNCiAgICB0aGVtZTogY2VydWxlYW4NCiAgICBoaWdobGlnaHQ6IGhhZGRvY2sNCiAgICBjb2RlX2ZvbGRpbmc6IG5vbmUNCnBhcmFtczoNCiAgY2hhbm5lbDogImxpZmVzdHlsZSINCiAgbG9hZF9kYXRhOiBGQUxTRQ0KLS0tDQoNCiMgSW50cm9kdWN0aW9uDQpgYGB7ciwgY2hpbGQ9InBhcnQgMSAtIGludHJvZHVjdGlvbi5SbWQifQ0KYGBgDQoNCiMgRGF0YQ0KYGBge3IsIGNoaWxkPSJwYXJ0IDIgLSBkYXRhLlJtZCJ9DQpgYGANCg==</div>
 
 
 
@@ -1832,7 +2235,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("part 1 - introduction.Rmd");
+  window.initializeSourceEmbed("Introduction_and_Data.Rmd");
 });
 </script>
 
