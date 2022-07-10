@@ -8,17 +8,13 @@ output:
     theme: cerulean
     highlight: haddock
     code_folding: none
-  html_document:
-    df_print: paged
 params:
   channel: "lifestyle"
   load_data: TRUE
 ---
 
 
-```{r include=FALSE}
-knitr::opts_chunk$set(fig.path = "../images/")
-
+```{r, include=FALSE}
 if(params$load_data){
   knitr::knit(here::here("_Rmd", "part 2 - data.Rmd"), output = tempfile())
   
@@ -57,7 +53,7 @@ skim(df_train_x)
 
 Next, let's learn more about our response variable: `shares` with a 5-number summary. With a histogram, we can visually see it's distribution and determine if it is symmetric, skewed left, or skewed right.
 
-```{r 8:15_7_8_2022}
+```{r histogram}
 # 5-number summary on shares
 summary(df_train_x$shares)
 
@@ -76,14 +72,14 @@ df_train_x %>%
 
 Despite the `channel` variable, there are two categorical variables `weekday`, `is_weekend`. A one-way contigency table shows how many articles were published on each weekday.
 
-```{r 9:47_7_8_2022}
+```{r}
 df_train_x %>% 
   select(weekday, is_weekend) %>% 
   summary()
 ```
 The following side-by-side box plots help us visualize the distributions of `shares` on each weekday.
 
-```{r 10:00_7_8_2022}
+```{r boxplot}
 df_train_x %>% 
   ggplot(aes(weekday, shares)) +
   geom_boxplot() +
@@ -98,7 +94,7 @@ df_train_x %>%
 
 We have `r ncol(df_train_x %>% select_if(is.numeric))` numeric variables. To further investigate the relationship among these numeric variables, we check their correlation by making pair-wise correlation plots. 
 
-```{r 8:10_7_7_2022, warning=FALSE, message=FALSE}
+```{r cor, warning=FALSE, message=FALSE}
 ggcorrplot(
   cor(select_if(df_train_x, is.numeric), use = "complete.obs"), 
   hc.order = TRUE, 
@@ -116,7 +112,7 @@ Below, we use scatter plots to inspect the relationship between the response var
 - `shares` vs. title-related metrics
 
 #### `shares` vs. Token-related Variables
-```{r}
+```{r scatter1}
 # scatter plots: shares vs. token-related variables
 df_train_x %>% 
   select(shares, starts_with("n_"), contains("token")) %>% 
@@ -131,7 +127,7 @@ df_train_x %>%
 ```
 
 #### `shares` vs. numbers of links, keywords, images and videos
-```{r}
+```{r scatter2}
 # scatter plots: shares vs. numbers of links, keywords, images and videos
 df_train_x %>% 
   select(shares, starts_with("num_"), starts_with("self_reference")) %>% 
@@ -147,7 +143,7 @@ df_train_x %>%
 
 
 #### `shares` vs. Keyword-related Metrics
-```{r}
+```{r scatter3}
 # scatter plots: shares vs. numbers of links, keywords, images and videos
 df_train_x %>% 
   select(shares, starts_with("kw_")) %>% 
@@ -162,7 +158,7 @@ df_train_x %>%
 ```
 
 #### `shares` vs. Word Polarity Metrics
-```{r}
+```{r scatter4}
 # scatter plots: shares vs. numbers of links, keywords, images and videos
 df_train_x %>% 
   select(
@@ -183,7 +179,7 @@ df_train_x %>%
 ```
 
 #### `shares` vs. Title-related Metrics
-```{r}
+```{r scatter5}
 # scatter plots: shares vs. numbers of links, keywords, images and videos
 df_train_x %>% 
   select(shares, contains("title")) %>% 

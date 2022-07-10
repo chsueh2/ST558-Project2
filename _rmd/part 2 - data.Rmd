@@ -15,10 +15,6 @@ params:
   load_data: TRUE
 ---
 
-```{r include=FALSE}
-knitr::opts_chunk$set(fig.path = "../images/")
-```
-
 
 ## Set up
 

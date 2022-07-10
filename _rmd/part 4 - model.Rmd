@@ -8,17 +8,13 @@ output:
     theme: cerulean
     highlight: haddock
     code_folding: none
-  html_document:
-    df_print: paged
 params:
   channel: "lifestyle"
   load_data: TRUE
 ---
 
 
-```{r include=FALSE}
-knitr::opts_chunk$set(fig.path = "../images/")
-
+```{r, include=FALSE}
 if(params$load_data){
   knitr::knit(here::here("_Rmd", "part 2 - data.Rmd"), output = tempfile())
   
@@ -54,7 +50,7 @@ A linear regression models the relationship between a response and predictors wi
 
 We fit both model A and B using the training data and compare their performance on the training set using 5-fold cross-validation. The best model is then used to predict on the test set to evaluate the model performance.
 
-```{r, warning=FALSE}
+```{r lm, warning=FALSE}
 # linear regression models
 
 # Model A: `weekday` (categorical) + selected numeric predictors
@@ -79,7 +75,7 @@ Random forests is also known as random decision forests model. It is an ensemble
 fit_rf_A <- fit_model(
   shares ~ ., df_train_x[, vars_A], df_test_x[, vars_A], method = "rf",
   trControl = trainControl(method = "cv", number = 5))
-  
+
 # Model B: `is_weekend` (categorical) + all numeric predictors
 fit_rf_B <- fit_model(
   shares ~ ., df_train_x[, vars_B], df_test_x[, vars_B], method = "rf",
@@ -96,7 +92,7 @@ Last, we try boosted tree models in which trees are grown sequentially. Each sub
 - `n.minobsinnode`: minimum number of observations in the terminal nodes (set to 10)
 
 
-```{r}
+```{r boosted}
 # boosted tree models
 
 # Model A: `weekday` (categorical) + selected numeric predictors
@@ -126,10 +122,10 @@ fit_boosted_B <- fit_model(
 
 We use RMSE to compare the model performance on the test set:
 
-```{r}
+```{r comparison}
 df_comparison <- tibble(
     Linear_Regression = c(fit_lm_A["RMSE"], fit_lm_B["RMSE"]),
-    Random_Forests = c(fit_rf_A["RMSE"], fit_rf_B["RMSE"]),
+    #Random_Forests = c(fit_rf_A["RMSE"], fit_rf_B["RMSE"]),
     Boosted_Tree = c(fit_boosted_A["RMSE"], fit_boosted_B["RMSE"])
   ) %>%
   bind_cols(model = c("A: shares ~ weekday + selected numeric vars", "B: shares ~ is_weekend + all numeric vars")) %>%
@@ -150,7 +146,7 @@ df_comparison[, -1]
 
 For the news data in ``r params$channel`` category, we found that the model ``r df_comparison$model[1]`` using supervised learning method ``r df_comparison$learning_method[1]`` has the lowest RMSE of `r df_comparison$RMSE[1]`.
 
-```{r}
+```{r save}
 # save the results
 write_csv(
   df_comparison, 

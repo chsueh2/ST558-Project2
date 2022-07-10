@@ -6,18 +6,18 @@ Bridget Knapp (brknapp@ncsu.edu)<br>
 Chien-Lan Hsueh (chsueh2@ncsu.edu)
 
 # Online News Popularity
-This project is to study the [Online News Popularity data set]() and create model for the predictions of the number of shares on a new article.
+This project is to study the [Online News Popularity data set](https://archive.ics.uci.edu/ml/datasets/Online+News+Popularity) and create model for the predictions of the number of shares on a new article.
 
 ## Links to Reports
 
-- [Introduction and Data Preparation](Introduction_and_Data.html)
-- [Analysis on Entertainment News Channel](Analysis_on_Entertainment.html)
-- [Analysis on Businiss News Channel](Analysis_on_Entertainment.html)
-- [Analysis on Lifestyle News Channel](Analysis_on_Lifestyle.html)
-- [Analysis on Misc News Channel](Analysis_on_Misc.html)
-- [Analysis on Socmedia News Channel](Analysis_on_Socmed.html)
-- [Analysis on Technology News Channel](Analysis_on_Tech.html)
-- [Analysis on World News Channel](Analysis_on_World.html)
+- [Introduction and Data Preparation](./output/Introduction_and_Data.html)
+- [Analysis on Entertainment News Channel](./output/Analysis_on_Entertainment.html)
+- [Analysis on Businiss News Channel](./output/Analysis_on_Bus.html)
+- [Analysis on Lifestyle News Channel](./output/Analysis_on_Lifestyle.html)
+- [Analysis on Misc News Channel](./output/Analysis_on_Misc.html)
+- [Analysis on Socmedia News Channel](./output/Analysis_on_Socmed.html)
+- [Analysis on Technology News Channel](./output/Analysis_on_Tech.html)
+- [Analysis on World News Channel](./output/Analysis_on_World.html)
 
 ## Automation of Report
 
@@ -26,17 +26,22 @@ The script used to automate the process of generating the reports: "render markd
 ### Introduction and Data
 For the introduction and data preparation:
 ```
-# render introduction and data prep
 rmarkdown::render(
   here("_Rmd", "Introduction_and_Data.Rmd"), 
   output_format = github_document(html_preview = FALSE), 
-  output_dir = here()
+  output_dir = here::here("output")
 )
 ```
 
 
-The body of the template Rmarkdown file "Introduction_and_Data.Rmd":
+The body of Rmarkdown template for report "Introduction_and_Data.md":
 ````
+```{r include=FALSE}
+path <- here::here("images", "intro") %&% "/"
+if(!file.exists(path)) dir.create(path)
+knitr::opts_chunk$set(fig.path = path)
+```
+
 # Introduction
 ```{r, child="part 1 - introduction.Rmd"}
 ```
@@ -44,6 +49,7 @@ The body of the template Rmarkdown file "Introduction_and_Data.Rmd":
 # Data
 ```{r, child="part 2 - data.Rmd"}
 ```
+
 ````
 
 
@@ -52,21 +58,28 @@ For the analysis reports on each news channel:
 ```
 # render analysis reports for each news channel
 for(i in unique(df_train$channel)){
-  filename <- "Analysis on " %&% str_to_title(i) %&% ".md"
+  filename <- "Analysis_on_" %&% str_to_title(i)
 
   rmarkdown::render(
     here("_Rmd", "Analysis.Rmd"), 
     output_format = github_document(html_preview = FALSE), 
     output_file = filename,
-    output_dir = here(),
+    output_dir = here::here("output"),
     params = list(channel = i, load_data = FALSE)
   )
 }
 ```
 
 
-The body of the template Rmarkdown file "Analysis.Rmd":
+The body of Rmarkdown template for report "Analysis_on_*.md":
 ````
+```{r include=FALSE}
+path <- here::here("images", params$channel) %&% "/"
+if(!file.exists(path)) dir.create(path)
+
+knitr::opts_chunk$set(fig.path = path)
+```
+
 This analysis report focuses on new channel: ``r params$channel``:
 ```{r}
 # subset by channel
