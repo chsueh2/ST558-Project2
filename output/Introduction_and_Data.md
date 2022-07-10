@@ -505,4 +505,4 @@ plot(ecdf(df_train$shares), col = "blue", main = "Empirical Cumulative Distribut
 plot(ecdf(df_test$shares), col = "red", add = T)
 ```
 
-![](C:/Users/clh82/Dropbox/Notes/NCSU%20ST558%20R%20Programmin/Homework/ST558-Project2/images/intro/unnamed-chunk-10-1.png)<!-- -->
+![](../images/intro/unnamed-chunk-10-1.png)<!-- -->
