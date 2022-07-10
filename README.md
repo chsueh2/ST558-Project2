@@ -8,16 +8,19 @@ Chien-Lan Hsueh (chsueh2@ncsu.edu)
 # Online News Popularity
 This project is to study the [Online News Popularity data set](https://archive.ics.uci.edu/ml/datasets/Online+News+Popularity) and create model for the predictions of the number of shares on a new article.
 
-## Links to Reports and GitHub Pages
+## Links to Reports
 
 - [Introduction and Data Preparation](./output/Introduction_and_Data.html)
 - [Analysis on Entertainment News Channel](./output/Analysis_on_Entertainment.html)
 - [Analysis on Businiss News Channel](./output/Analysis_on_Bus.html)
 - [Analysis on Lifestyle News Channel](./output/Analysis_on_Lifestyle.html)
 - [Analysis on Misc News Channel](./output/Analysis_on_Misc.html)
-- [Analysis on Socmedia News Channel](./output/Analysis_on_Socmed.html)
+- [Analysis on Social Media News Channel](./output/Analysis_on_Socmed.html)
 - [Analysis on Technology News Channel](./output/Analysis_on_Tech.html)
 - [Analysis on World News Channel](./output/Analysis_on_World.html)
+
+## Links to GitHub Pages amd Blog
+
 - [Project2 GitHub age](https://chsueh2.github.io/ST558-Project2/)
 - [Blog page](https://chsueh2.github.io/ST558-2nd-project.html)
 
