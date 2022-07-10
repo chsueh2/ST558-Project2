@@ -10,6 +10,8 @@ output:
     code_folding: none
   html_document:
     df_print: paged
+params:
+  channel: "all"
 ---
 
 ```{r include=FALSE}
@@ -55,7 +57,7 @@ We define a helper function `fit_model()` wrapping `caret::train()`. This functi
 
 > Arguments:
 >
-> - `form`: formula
+> - `formula`: formula
 > - `df_train`: training set
 > - `df_test`: test set
 > - `method`: classification or regression model to use
@@ -73,7 +75,7 @@ In case a tuning parameter plot is needed, this function calls a helper function
 ```{r}
 # a wrapper function to train a model with train set and calculate the model performance on test set
 fit_model <- function(
-    form, df_train, df_test, method, 
+    formula, df_train, df_test, method, 
     preProcess = c("center", "scale"),
     trControl = trainControl(), 
     tuneGrid = NULL, 
@@ -84,7 +86,7 @@ fit_model <- function(
   
   # train model
   fit <- train(
-    form = form,
+    form = formula,
     data = df_train,
     method = method,
     preProcess = c("center", "scale"),
@@ -242,7 +244,6 @@ df <- df_raw %>%
   ) %>% 
   relocate(shares, channel, weekday, is_weekend)
 
-
 # show the data frame
 df
 ```
@@ -261,5 +262,20 @@ trainIndex <- createDataPartition(df$shares, p = 0.7, list = F)
 df_train <- df[trainIndex, ]
 df_test <- df[-trainIndex, ]
 ```
+
+
+## Subset channel
+
+Next we subset data by channel. This is done by specifying rmarkdown parameter `channel`. By default, its value is `all` without any subsetting.
+
+```{r}
+# subset by channel
+if(params$channel != "all"){
+  df_train <- df_train %>% filter(channel == params$channel)
+  df_test <- df_test %>% filter(channel == params$channel)
+}
+```
+
+
 
 
