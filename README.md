@@ -8,15 +8,16 @@ Chien-Lan Hsueh (chsueh2@ncsu.edu)
 # Online News Popularity
 This project is to study the [Online News Popularity data set]() and create model for the predictions of the number of shares on a new article.
 
-## Links to reports
+## Links to Reports
 
 - [Introduction and Data Preparation]
 - [Analysis on Entertainment News Channel]
 
 ## Automation of Report
 
-The script used to automate the process of generating the reports can be found [here]("render markdown.R").
+The script used to automate the process of generating the reports: "render markdown.R"
 
+### Introduction and Data
 For the introduction and data preparation:
 ```
 # render introduction and data prep
@@ -27,10 +28,25 @@ rmarkdown::render(
 )
 ```
 
+
+The body of the template Rmarkdown file "Introduction_and_Data.Rmd":
+````
+# Introduction
+
+```{r, child="part 1 - introduction.Rmd"}
+```
+
+# Data
+```{r, child="part 2 - data.Rmd"}
+```
+````
+
+
+### Analysis Reports
 For the analysis reports on each news channel:
 ```
 # render analysis reports for each news channel
-for(i in unique(df_train$channel)[1:2]){
+for(i in unique(df_train$channel)){
   filename <- "Analysis on " %&% str_to_title(i) %&% ".html"
 
   rmarkdown::render(
