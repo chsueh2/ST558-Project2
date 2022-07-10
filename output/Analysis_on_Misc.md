@@ -164,7 +164,7 @@ df_train_x %>%
     y="Frequency")
 ```
 
-![](C:/Users/clh82/Dropbox/Notes/NCSU%20ST558%20R%20Programmin/Homework/ST558-Project2/images/misc/histogram-1.png)<!-- -->
+![](../images/misc/histogram-1.png)<!-- -->
 
 ### Categorical Predictors
 
@@ -201,7 +201,7 @@ df_train_x %>%
     x = "Weekday")
 ```
 
-![](C:/Users/clh82/Dropbox/Notes/NCSU%20ST558%20R%20Programmin/Homework/ST558-Project2/images/misc/boxplot-1.png)<!-- -->
+![](../images/misc/boxplot-1.png)<!-- -->
 
 ### Numeric Predictors
 
@@ -218,7 +218,7 @@ ggcorrplot(
   title = paste0("Correlation Plot for News Channel ", params$channel))
 ```
 
-![](C:/Users/clh82/Dropbox/Notes/NCSU%20ST558%20R%20Programmin/Homework/ST558-Project2/images/misc/cor-1.png)<!-- -->
+![](../images/misc/cor-1.png)<!-- -->
 
 Below, we use scatter plots to inspect the relationship between the
 response variable `shares` and various numeric variables in related
@@ -246,7 +246,7 @@ df_train_x %>%
   ggtitle("Shares vs. Token-related Variables")
 ```
 
-![](C:/Users/clh82/Dropbox/Notes/NCSU%20ST558%20R%20Programmin/Homework/ST558-Project2/images/misc/scatter1-1.png)<!-- -->
+![](../images/misc/scatter1-1.png)<!-- -->
 
 #### `shares` vs. numbers of links, keywords, images and videos
 
@@ -264,7 +264,7 @@ df_train_x %>%
   ggtitle("Shares vs. Numbers of Links, Keywords, Images and Videos")
 ```
 
-![](C:/Users/clh82/Dropbox/Notes/NCSU%20ST558%20R%20Programmin/Homework/ST558-Project2/images/misc/scatter2-1.png)<!-- -->
+![](../images/misc/scatter2-1.png)<!-- -->
 
 #### `shares` vs. Keyword-related Metrics
 
@@ -282,7 +282,7 @@ df_train_x %>%
   ggtitle("Shares vs. Keyword-related Metrics")
 ```
 
-![](C:/Users/clh82/Dropbox/Notes/NCSU%20ST558%20R%20Programmin/Homework/ST558-Project2/images/misc/scatter3-1.png)<!-- -->
+![](../images/misc/scatter3-1.png)<!-- -->
 
 #### `shares` vs. Word Polarity Metrics
 
@@ -306,7 +306,7 @@ df_train_x %>%
   ggtitle("Shares vs. Word Polarity Metrics")
 ```
 
-![](C:/Users/clh82/Dropbox/Notes/NCSU%20ST558%20R%20Programmin/Homework/ST558-Project2/images/misc/scatter4-1.png)<!-- -->
+![](../images/misc/scatter4-1.png)<!-- -->
 
 #### `shares` vs. Title-related Metrics
 
@@ -324,7 +324,7 @@ df_train_x %>%
   ggtitle("Shares vs. Title-related Metrics")
 ```
 
-![](C:/Users/clh82/Dropbox/Notes/NCSU%20ST558%20R%20Programmin/Homework/ST558-Project2/images/misc/scatter5-1.png)<!-- -->
+![](../images/misc/scatter5-1.png)<!-- -->
 
 # Modeling
 
