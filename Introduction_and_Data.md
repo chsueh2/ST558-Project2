@@ -209,42 +209,42 @@ df_raw <- read_csv(here("data", "OnlineNewsPopularity.csv"))
 ```
 
     ## Rows: 39644 Columns: 61
-    ## -- Column specification ---------------------------------------------------------------------------------------------------------
+    ## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────
     ## Delimiter: ","
     ## chr  (1): url
     ## dbl (60): timedelta, n_tokens_title, n_tokens_content, n_unique_tokens, n_non_stop_words, n_non_stop_unique_tokens, num_hrefs...
     ## 
-    ## i Use `spec()` to retrieve the full column specification for this data.
-    ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 ``` r
 # show the raw data
 head(df_raw)
 ```
 
-    ## # A tibble: 6 x 61
-    ##   url        timedelta n_tokens_title n_tokens_content n_unique_tokens n_non_stop_words n_non_stop_uniq~ num_hrefs num_self_hrefs
+    ## # A tibble: 6 × 61
+    ##   url        timedelta n_tokens_title n_tokens_content n_unique_tokens n_non_stop_words n_non_stop_uniq… num_hrefs num_self_hrefs
     ##   <chr>          <dbl>          <dbl>            <dbl>           <dbl>            <dbl>            <dbl>     <dbl>          <dbl>
-    ## 1 http://ma~       731             12              219           0.664             1.00            0.815         4              2
-    ## 2 http://ma~       731              9              255           0.605             1.00            0.792         3              1
-    ## 3 http://ma~       731              9              211           0.575             1.00            0.664         3              1
-    ## 4 http://ma~       731              9              531           0.504             1.00            0.666         9              0
-    ## 5 http://ma~       731             13             1072           0.416             1.00            0.541        19             19
-    ## 6 http://ma~       731             10              370           0.560             1.00            0.698         2              2
-    ## # ... with 52 more variables: num_imgs <dbl>, num_videos <dbl>, average_token_length <dbl>, num_keywords <dbl>,
+    ## 1 http://ma…       731             12              219           0.664             1.00            0.815         4              2
+    ## 2 http://ma…       731              9              255           0.605             1.00            0.792         3              1
+    ## 3 http://ma…       731              9              211           0.575             1.00            0.664         3              1
+    ## 4 http://ma…       731              9              531           0.504             1.00            0.666         9              0
+    ## 5 http://ma…       731             13             1072           0.416             1.00            0.541        19             19
+    ## 6 http://ma…       731             10              370           0.560             1.00            0.698         2              2
+    ## # … with 52 more variables: num_imgs <dbl>, num_videos <dbl>, average_token_length <dbl>, num_keywords <dbl>,
     ## #   data_channel_is_lifestyle <dbl>, data_channel_is_entertainment <dbl>, data_channel_is_bus <dbl>,
     ## #   data_channel_is_socmed <dbl>, data_channel_is_tech <dbl>, data_channel_is_world <dbl>, kw_min_min <dbl>, kw_max_min <dbl>,
     ## #   kw_avg_min <dbl>, kw_min_max <dbl>, kw_max_max <dbl>, kw_avg_max <dbl>, kw_min_avg <dbl>, kw_max_avg <dbl>,
     ## #   kw_avg_avg <dbl>, self_reference_min_shares <dbl>, self_reference_max_shares <dbl>, self_reference_avg_sharess <dbl>,
     ## #   weekday_is_monday <dbl>, weekday_is_tuesday <dbl>, weekday_is_wednesday <dbl>, weekday_is_thursday <dbl>,
-    ## #   weekday_is_friday <dbl>, weekday_is_saturday <dbl>, weekday_is_sunday <dbl>, is_weekend <dbl>, LDA_00 <dbl>, ...
+    ## #   weekday_is_friday <dbl>, weekday_is_saturday <dbl>, weekday_is_sunday <dbl>, is_weekend <dbl>, LDA_00 <dbl>, LDA_01 <dbl>, …
 
 ``` r
 # check structure
 str(df_raw)
 ```
 
-    ## spec_tbl_df [39,644 x 61] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ## spec_tbl_df [39,644 × 61] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
     ##  $ url                          : chr [1:39644] "http://mashable.com/2013/01/07/amazon-instant-video-browser/" "http://mashable.com/2013/01/07/ap-samsung-sponsored-tweets/" "http://mashable.com/2013/01/07/apple-40-billion-app-downloads/" "http://mashable.com/2013/01/07/astronaut-notre-dame-bcs/" ...
     ##  $ timedelta                    : num [1:39644] 731 731 731 731 731 731 731 731 731 731 ...
     ##  $ n_tokens_title               : num [1:39644] 12 9 9 9 13 10 8 12 11 10 ...
@@ -505,4 +505,4 @@ plot(ecdf(df_train$shares), col = "blue", main = "Empirical Cumulative Distribut
 plot(ecdf(df_test$shares), col = "red", add = T)
 ```
 
-![](../images/unnamed-chunk-11-1.png)<!-- -->
+![](C:\Users\clh82\Dropbox\Notes\NCSU%20ST558%20R%20Programmin\Homework\ST558-Project2\Introduction_and_Data_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
