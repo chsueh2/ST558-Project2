@@ -11,13 +11,16 @@ output:
   html_document:
     df_print: paged
 params:
+  load_data: TRUE
   channel: "bus"
 ---
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(fig.path = "./images/")
+knitr::opts_chunk$set(fig.path = "../images/")
 
-rmarkdown::render("part 2 - data.Rmd", output_file = tempfile(), params = list(channel = params$channel))
+if(params$load_data){
+  rmarkdown::render("part 2 - data.Rmd", output_file = tempfile(), params = list(channel = params$channel))
+}
 ```
 
 
@@ -30,7 +33,7 @@ In this project, we model the response `shares` using supervised learning includ
 
 ```{r}
 # Model A: `weekday` (categorical) + selected numeric predictors
-vars_A <- c(1, 3, 5:13, 15)
+vars_A <- c(1, 3, 5:15)
 names(df_train)[vars_A]
 
 # Model B: `is_weekend` (categorical) + all numeric predictors

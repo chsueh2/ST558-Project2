@@ -15,7 +15,7 @@ params:
 ---
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(fig.path = "./images/")
+knitr::opts_chunk$set(fig.path = "../images/")
 ```
 
 
@@ -31,6 +31,9 @@ We will use the following packages in this project:
 - `glue`: offers interpreted string literals for easy creation of dynamic messages and labels
 - `scales`: formats and labels scales nicely for better visualization
 - `skimr`: summary statistics about variables in data frames
+- `vtable`: summary statistics about variables in data frames
+- `ggcorrplot`: correlation plot matrix
+- `Hmisc`: for its quick histogram plotting function `hist.data.frame()`
 - `caret`: training and plotting classification and regression models
 - `randomForest`: random forest algorithm for classification and regression.
 - `ranger`: a fast implementation of random forests 
@@ -46,7 +49,8 @@ pacman::p_load(
   stats,
   tidyverse,
   lubridate,
-  glue, scales, skimr,
+  glue, scales, skimr, vtable,
+  ggcorrplot, Hmisc,
   caret, randomForest, gbm
 )
 ```
@@ -264,9 +268,17 @@ df_test <- df[-trainIndex, ]
 ```
 
 
+Check if both train and test sets have similar cdf:
+```{r}
+# check balance - compare ecdf of train and test sets
+plot(ecdf(df_train$shares), col = "blue", main = "Empirical Cumulative Distribution", xlab = "shares")
+plot(ecdf(df_test$shares), col = "red", add = T)
+```
+
+
 ## Subset channel
 
-Next we subset data by channel. This is done by specifying rmarkdown parameter `channel`. By default, its value is `all` without any subsetting.
+Next we subset data by channel. This is done by specifying rmarkdown parameter `channel`. By default, its value is `all` to keep all data  without any subsetting.
 
 ```{r}
 # subset by channel
