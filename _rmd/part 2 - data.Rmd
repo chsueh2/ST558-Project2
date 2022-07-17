@@ -78,7 +78,7 @@ fit_model <- function(
     preProcess = c("center", "scale"),
     trControl = trainControl(), 
     tuneGrid = NULL, 
-    plot = FALSE, ... ){
+    plot = TRUE, ... ){
   
   # timer - start
   proc_timer <- proc.time()
@@ -111,7 +111,7 @@ fit_model <- function(
   # return performance metric or confusion matrix depending on response type
   if(is.numeric(pred)){
     # numeric response
-    performance <- postResample(pred, obs = df_test[,1] %>% as_vector())
+    performance <- postResample(pred, obs = df_test[, 1])
     # print performance metrics
     print("Performance metrics:")
     print(performance)
@@ -121,7 +121,7 @@ fit_model <- function(
     
   } else if(is.factor(pred)){
     # categorical response
-    cfm <- confusionMatrix(pred, df_test[,1] %>% as_vector())
+    cfm <- confusionMatrix(df_test[, 1], pred)
     # print confusion matrix and accuracy
     print("Confusion table:")
     print(cfm$table)

@@ -45,8 +45,8 @@ rmarkdown::render(
 
 # render 0: Readme
 rmarkdown::render(
-  here("_Rmd", "README.Rmd"), 
-  output_format = github_document(html_preview = FALSE), 
+  here("_Rmd", "z plot.Rmd"), 
+  output_format = github_document(html_preview = T), 
   #output_format = html_document(), 
-  output_dir = here::here()
+  output_dir = here(output)
 )
